@@ -1,2 +1,2 @@
-# Pitch-Correction-Thesis
-Final year Electrical and Computer Engineering Thesis on pitch correction in the context of digital vocal recordings
+# Pitch Correction Thesis
+Final year Electrical and Computer Engineering thesis on pitch correction in the context of digital vocal recordings.
