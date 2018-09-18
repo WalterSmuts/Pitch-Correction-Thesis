@@ -1,0 +1,113 @@
+\documentclass[12pt, twoside, openright]{report}
+
+% Packages
+\usepackage{color}
+% REMEMBER TO ADD OFFSET FOR BINDING!!!!
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=0mm]{geometry}
+\usepackage{fancyhdr}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage{titling}
+
+% Only used for blind text
+\usepackage[english]{babel}
+\usepackage{blindtext}
+
+% Page layout
+\pagestyle{fancy}
+
+% Assuming odd pages are right and even are left pages
+% Chapter Pages
+\fancypagestyle{plain}{
+	\fancyhf{}
+	\fancyfoot[LE,RO]{\thepage}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+% General Header
+\fancyhead{}
+\fancyhead[LO,RE]{\thetitle}
+\fancyhead[LE,RO]{\nouppercase\leftmark}
+
+% General Footer
+\fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
+
+% Specific information
+\title{Pitch Correction}
+\author{Walter Smuts}
+
+\begin{document}
+\maketitle
+\newpage\null\newpage
+
+\section*{Abstract}
+
+{\color{red}
+To Do:
+\begin{itemize}
+	\item Describe what the thesis is about
+\end{itemize}
+\color{black}
+}
+
+\newpage
+\section*{Declaration}
+
+{\color{red}
+To Do:
+\begin{itemize}
+	\item Add declaration and scanned signature
+\end{itemize}
+}
+
+\tableofcontents
+
+\chapter{Introduction}
+
+\setcounter{page}{1}
+
+\Blindtext
+
+\chapter{Literature Review}
+
+\blindtext
+\blinddescription
+\Blindtext
+\Blindtext
+
+\chapter{Mathematical Framework}
+
+\blindmathpaper
+
+\chapter{Implementation}
+
+\blindtext
+\blinditemize
+\blindtext
+\blindenumerate
+\Blindtext
+\blinditemize
+\Blindtext
+\blinddescription
+\Blindtext
+
+\chapter{Comparison of Results}
+
+\Blindtext
+
+\chapter{Future Work}
+
+\Blindtext
+
+\appendix
+
+\chapter{Proof 1}
+
+\blindmathtrue
+\Blindtext
+
+\chapter{Proof 2}
+
+\blindtext
+
+\end{document}
