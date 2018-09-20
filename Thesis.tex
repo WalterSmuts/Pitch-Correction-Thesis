@@ -12,6 +12,9 @@
 \usepackage{titling}
 \usepackage{titlesec}
 \usepackage{hyperref}
+\usepackage{changepage}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
 
 % Only used for blind text
 \usepackage[english]{babel}
@@ -98,7 +101,32 @@
 \makeatother
 
 % First page
-\maketitle
+\begin{titlepage}
+\begin{adjustwidth*}{}{-1.5cm} % For centering front page
+\begin{center}
+	\vspace*{4cm}
+
+	{\Huge\textbf\thetitle}
+
+	{\it of digital monophonic audio}
+
+	\vspace{0.8cm}
+	\includegraphics[width=0.4\textwidth]{UCT.jpg}
+	\vspace{0.8cm}
+
+
+	by \theauthor
+	\vspace{0.8cm}
+
+	Prepared for Associate Professor Fred Nicolls\\
+	Department of Electrical Engineering\\
+	University of Cape Town\\
+	South Africa\\
+	\vspace{2cm}
+	\today
+\end{center}
+\end{adjustwidth*}
+\end{titlepage}
 \cleardoublepage
 
 % Reset page numbering and use roman numerals
