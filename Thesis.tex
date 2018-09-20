@@ -10,6 +10,7 @@
 \usepackage{fancyhdr}
 \usepackage[protrusion=true,expansion=true]{microtype}
 \usepackage{titling}
+\usepackage{titlesec}
 
 % Only used for blind text
 \usepackage[english]{babel}
@@ -22,6 +23,23 @@
 \title{Pitch Correction}
 \author{Walter Smuts}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION HEADING STYLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Chapter style
+\titleformat{\chapter}
+{\normalfont \LARGE \bfseries}
+{}
+{0em}
+{\MakeUppercase}
+[\titlerule \small\it Chapter \thechapter]
+
+% Chapter spacing
+\titlespacing*{\chapter}
+  {0pt}
+  {15pt}
+  {25pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE STYLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,8 +77,8 @@
 
 % General Header
 \fancyhead{}
-\fancyhead[LO,RE]{\thetitle}
 \fancyhead[LE,RO]{\nouppercase\leftmark}
+\fancyhead[LO,RE]{\TITLE}
 
 % General Footer
 \fancyfoot{}
@@ -72,6 +90,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+
+% Save title
+\makeatletter
+\let\TITLE\@title
+\makeatother
 
 % First page
 \maketitle
