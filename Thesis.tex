@@ -14,8 +14,9 @@
 \usepackage{hyperref}
 \usepackage{changepage}
 \usepackage{graphicx}
-\usepackage{ifthen}
 \graphicspath{ {images/} }
+\usepackage{ifthen}
+\usepackage{etoolbox}
 
 % Only used for blind text
 \usepackage[english]{babel}
@@ -38,13 +39,23 @@
 {}
 {0em}
 {\MakeUppercase}
-[\ifthenelse{\equal{\thechapter}{0}}{}{ \titlerule \small\it Chapter \thechapter}]
+[\titlerule \ifthenelse{\equal{\thechapter}{0}}{}{ \small\it \chaptertitlename \space \thechapter}]
 
 % Chapter spacing
 \titlespacing*{\chapter}
   {0pt}
   {15pt}
   {25pt}
+
+\patchcmd{\thebibliography}{\chapter*{\bibname}}
+{\cleardoublepage\MakeUppercase
+{\vspace*{1cm}\hspace{-7mm} \normalfont \LARGE \bfseries References}
+
+\vspace{2.5mm}
+\titlerule\thispagestyle{plain}
+}
+{}{}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE STYLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -197,6 +208,7 @@ To Do:
 
 \bibliography{references}{}
 \bibliographystyle{ieeetr}
+\addcontentsline{toc}{chapter}{References}
 
 \appendix
 
