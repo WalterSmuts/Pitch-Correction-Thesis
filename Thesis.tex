@@ -14,6 +14,7 @@
 \usepackage{hyperref}
 \usepackage{changepage}
 \usepackage{graphicx}
+\usepackage{ifthen}
 \graphicspath{ {images/} }
 
 % Only used for blind text
@@ -37,7 +38,7 @@
 {}
 {0em}
 {\MakeUppercase}
-[\titlerule \small\it Chapter \thechapter]
+[\ifthenelse{\equal{\thechapter}{0}}{}{ \titlerule \small\it Chapter \thechapter}]
 
 % Chapter spacing
 \titlespacing*{\chapter}
