@@ -8,20 +8,7 @@ vocoder paper \cite{ImprovedPhaseVocoder}.
 To Do:
 \begin{itemize}
 	\item Describe the intent of the review
-\end{itemize}
-\color{black}
-
-\section{General Autotuning Structure}
-
-\color{red}
-To Do:
-\begin{itemize}
-	\item Stages and sections needed e.g.:
-	\begin{itemize}
-		\item Pitch detection
-		\item Pitch shifting
-		\item Windowing (Where does this come in?)
-	\end{itemize}
+	\item Descrive the structure of the review
 \end{itemize}
 \color{black}
 
@@ -30,54 +17,60 @@ To Do:
 \color{red}
 To do:
 \begin{itemize}
-	\item Describe pitch as perceived by people and how it's relevant to auto tuning.
-	\item Describe Tuning and equaled tempered tuning
+	\item Describe pitch as perceived by people
+	\item Describe tuning and equaled tempered tuning
+	\item Describe how this is relevant to pitch correction
 \end{itemize}
 \color{black}
 
-\section{Windowing}
+\section{General Pitch Correction Structure}
+
+\color{red}
+To Do:
+\begin{itemize}
+	\item Stages and sections needed e.g.:
+	\begin{itemize}
+		\item Segmentation/Windowing
+		\item Frequency detection
+		\item Decide where to shift
+		\item Frequency scaling
+	\end{itemize}
+	\item Add a flow diagram
+\end{itemize}
+\color{black}
+
+\section{Segmentation}
 
 \color{red}
 To do:
 \begin{itemize}
-	\item Describe what windowing is
-	\item Describe stages (Split into windows, do computation and stitch)
-	\item Resolution of tuning (only relevant to the size of windows)
-	\item Implications of math (What is lost as window gets smaller???)
-	\item Why shouldn't windows be too large
+	\item Describe what segmentation is and why it is necessary
+	\item Describe stages
+	\begin{itemize}
+		\item Split (overlap)
+		\item Do computation
+		\item Stitch (overlap and add)
+	\end{itemize}
+	\item Reason to overlap and size of overlapping (TRADE-OFF)
+	\item Window size (TRADE-OFF)
+	\begin{itemize}
+		\item Small means low resolution
+		\item Large means latency
+		\item Small generally means more computation
+	\end{itemize}
 	\item Properties to preserve relevant to real time auto tuning
-	\item Call it the right thing!!! Maybe segmentation
 \end{itemize}
 \color{black}
 
-\subsection{Splitting Windows}
+\section{Frequency Detection}
 
 \color{red}
 To do:
 \begin{itemize}
-	\item Is there anything to describe here?
-\end{itemize}
-\color{black}
-
-\subsection{Stitching Windows}
-
-\color{red}
-To do:
-\begin{itemize}
-	\item After the computation is done it's not necessarily  continuous anymore
-	\item How to stitch the windows back together
-\end{itemize}
-\color{black}
-
-\section{Pitch Detection}
-
-\color{red}
-To do:
-\begin{itemize}
-	\item No single method
+	\item Explain that there is no single go-to method
 	\item Different methods have different characteristics
 	\item What is important for this application
-	\item Overview which methods will be investigated
+	\item Give overview of which methods will be investigated
 \end{itemize}
 \color{black}
 
@@ -86,7 +79,8 @@ To do:
 \color{red}
 To do:
 \begin{itemize}
-	\item Describe method.
+	\item Describe method roughly
+	\item More in depth description comes in implementation section
 \end{itemize}
 \color{black}
 
@@ -95,7 +89,18 @@ To do:
 \color{red}
 To do:
 \begin{itemize}
-	\item Describe method.
+	\item Describe method roughly
+	\item More in depth description comes in implementation section
+\end{itemize}
+\color{black}
+
+\subsection{Max FFT Method}
+
+\color{red}
+To do:
+\begin{itemize}
+	\item Describe method roughly
+	\item More in depth description comes in implementation section
 \end{itemize}
 \color{black}
 
@@ -104,36 +109,38 @@ To do:
 \color{red}
 To do:
 \begin{itemize}
-	\item Describe method.
+	\item Describe method roughly
+	\item More in depth description comes in implementation section
 \end{itemize}
 \color{black}
 
-\section{Pitch Shifting}
+\section{Frequency Scaling}
 
 \color{red}
 To do:
 \begin{itemize}
-	\item Describe method.
+	\item General approach is to expand/extrapolate frequency
+	\item Time domain approaches and frequency domain approaches
+	\item Introduce two approaches Phase Vocoder and pitch synchronous overlap and add
 \end{itemize}
 \color{black}
 
-\section{Links}
+\subsection{Phase Vocoder}
 
+\color{red}
+To do:
 \begin{itemize}
-
-\item \url
-{http://chenzhe142.github.io/nu-eecs352}
-
-\item \url
-{http://ws2.binghamton.edu/zahorian/yaapt.htm}
-
-\item\url
-{https://en.wikipedia.org/wiki/Pitch\_detection\_algorithm}
-
-\item\url
-{https://docs.google.com/document/d/1tp\_YYqvUUViPUb\_ZTzGNi4BVfWNqkrOlXcdM63DAwWY/edit}
-
-\item\url
-{https://sound.eti.pg.gda.pl/student/eim/synteza/leszczyna/index_ang.htm}
-
+	\item Describe method roughly
+	\item More in depth description comes in implementation section
 \end{itemize}
+\color{black}
+
+\subsection{PSOLA}
+
+\color{red}
+To do:
+\begin{itemize}
+	\item Describe method roughly
+	\item More in depth description comes in implementation section
+\end{itemize}
+\color{black}
