@@ -63,13 +63,29 @@
 % Page layout
 \pagestyle{fancy}
 
+% Front page offset
+\makeatletter
+\if@twoside
+	\newcommand{\frontpageoffset}{-1.5cm}
+\else
+
+	\newcommand{\frontpageoffset}{0cm}
+\fi
+\makeatother
+
+% Offset to force numbers to margins
 \newcommand{\numberoffset}{\hspace{-2cm}}
 
 % Assuming odd pages are right and even are left pages
 % Chapter Pages
 \fancypagestyle{plain}{
-	\fancyhf{}
-	\fancyfoot[LE,RO]{\thepage\numberoffset}
+	\fancyhead{}
+	\makeatletter
+	\if@twoside
+		\fancyhf{}
+		\fancyfoot[LE,RO]{\thepage\numberoffset}
+	\fi
+	\makeatother
 	\renewcommand{\headrulewidth}{0pt}
 }
 
@@ -98,9 +114,14 @@
 
 % General Footer
 \fancyfoot{}
-\fancyfoot[LE]{\numberoffset\thepage}
-\fancyfoot[RO]{\thepage\numberoffset}
-
+\makeatletter
+\if@twoside
+	\fancyfoot[LE]{\numberoffset\thepage}
+	\fancyfoot[RO]{\thepage\numberoffset}
+\else
+	\fancyfoot[C]{\thepage}
+\fi
+\makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% START OF DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,7 +135,7 @@
 
 % First page
 \begin{titlepage}
-\begin{adjustwidth*}{}{-1.5cm} % For centering front page
+\begin{adjustwidth*}{}{\frontpageoffset} % For centering front page
 \begin{center}
 	\vspace*{4cm}
 
@@ -125,7 +146,6 @@
 	\vspace{0.8cm}
 	\includegraphics[width=0.4\textwidth]{UCT.jpg}
 	\vspace{0.8cm}
-
 
 	by \theauthor
 	\vspace{0.8cm}
