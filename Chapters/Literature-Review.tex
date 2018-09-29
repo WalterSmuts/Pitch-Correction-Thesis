@@ -12,32 +12,51 @@ investigated further.
 
 \section{Music Theory}
 
-The intent of this section is to understand what it means for a pitch to be
-correct and how this relates to frequency. The term ``in tune'' is often used in
-the musical world and describes a note that sounds good in relation to other notes
-played either before, after or during the note being considered. Finally the idea
-of a tuning system is investigated which produces a list of available notes that
-are correct and can be used by the pitch corrector when choosing the correct note
-to shift to.
+The intent of this section is to come up with a definition of what will be
+considered correct pitch. Some foundational work is required to define basic
+musical concepts in a rigorous way. To start we need to define exactly what is
+meant by a musical note.
 
-Pitch and frequency are terms often used interchangeably. Pitch is a sensation
-experienced by humans when they hear sounds containing frequencies between 31Hz
-and 17.6 kHz\cite{Hearing}. The sensation of pitch is scaled on an subjective
-``high'' and ``low'' scale. The higher the frequency, the higher the pitch
-perceived and the lower the frequency, the lower the pitch perceived. This
-relationship between pitch and frequency is generally considered to be
-logarithmic.  Slight deviations from the expected logarithmic relationship was
-found \cite{PitchVsFrequency} but was deemed minor and unnecessary to incorporate
-for this project.
+A note is a sound made from a musical instrument. It has a pitch, volume, timbre
+and length. These are the characteristics a musician would consider when composing
+a piece of music. Each of these characteristics have a more rigorous scientific
+counterpart they are related to. Pitch relates to frequency; Volume relates to
+amplitude; timbre relates to harmonic content and length relates to duration. The
+characteristic pair relevant to pitch correction is the pitch and frequency pair
+and needs to be covered in more depth.
+
+Pitch and frequency are terms often used interchangeably. Pitch is a
+\textit{sensation} experienced by humans when they hear notes containing
+frequencies between 31Hz and 17.6 kHz\cite{Hearing}. The sensation of pitch is
+scaled on an subjective ``high'' and ``low'' scale. The higher the frequency, the
+higher the pitch perceived and the lower the frequency, the lower the pitch
+perceived. This relationship between pitch and frequency is generally considered
+to be logarithmic. Slight deviations from the expected logarithmic relationship
+was found \cite{PitchVsFrequency} but was deemed minor and unnecessary to
+incorporate for this project.
+
+\begin{wrapfigure}{l}{0.45\textwidth}
+\includegraphics[width=0.5\textwidth]{Frequency-Vs-Pitch}
+\caption{"Frequency vs Pitch"}
+\label{fig:FrequencyVsPitch}
+\vspace{-1cm} % To stop wrapping on next page
+\end{wrapfigure}
+
+In Figure \ref{fig:FrequencyVsPitch} the relationship of frequency and pitch is
+shown. Pitch is generally denoted by letters ranging from A to G with
+sharps(\musSharp) and flats(\musFlat) called accidentals.  This is due to a long
+history of convention and is irrelevant for now. The main takeaway is that the
+perceived change in pitch is constant for each successive note. From this graph it
+can be seen that frequency is exponentially dependent on pitch, or inversely,
+pitch is logarithmically dependent on frequency.
 
 \color{red}
 To do:
 \begin{itemize}
-	\item Logarithmic relationship means distance metric.
-	\item Draw graph that shows this.
-	\item Explain note harmony
-	\item Describe tuning and equaled tempered tuning
-	\item Describe how this is relevant to pitch correction
+	\item In tune
+	\item Harmony
+	\item Tuning system and equal tempered tuning
+	\item Tie back to the fact that this gives us a definition of correct
 \end{itemize}
 \color{black}
 
