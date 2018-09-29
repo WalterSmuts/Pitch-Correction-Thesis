@@ -1,23 +1,41 @@
 % !tex root = ../Thesis.tex
 
-\color{red}
-Here's an example of referencing the original phase vocoder paper
-\cite{OriginalPhaseVocoder} and here's a reference to the improved phase
-vocoder paper \cite{ImprovedPhaseVocoder}.
+This literature review attempts to cover all the subjects relevant to pitch
+correction. Musical theory is investigated first, covering the topics of human
+pitch perception and tuning. This section attempts to determine what it means for
+pitch to be correct and how this relates to frequency.
 
-To Do:
-\begin{itemize}
-	\item Describe the intent of the review
-	\item Descrive the structure of the review
-\end{itemize}
-\color{black}
+After it is well known what is musically considered to be a correct pitch, the
+general structure of how pitch correction is approached is investigated. This
+structure naturally splits up into modules and each of these modules is
+investigated further.
 
 \section{Music Theory}
+
+The intent of this section is to understand what it means for a pitch to be
+correct and how this relates to frequency. The term ``in tune'' is often used in
+the musical world and describes a note that sounds good in relation to other notes
+played either before, after or during the note being considered. Finally the idea
+of a tuning system is investigated which produces a list of available notes that
+are correct and can be used by the pitch corrector when choosing the correct note
+to shift to.
+
+Pitch and frequency are terms often used interchangeably. Pitch is a sensation
+experienced by humans when they hear sounds containing frequencies between 31Hz
+and 17.6 kHz\cite{Hearing}. The sensation of pitch is scaled on an subjective
+``high'' and ``low'' scale. The higher the frequency, the higher the pitch
+perceived and the lower the frequency, the lower the pitch perceived. This
+relationship between pitch and frequency is generally considered to be
+logarithmic.  Slight deviations from the expected logarithmic relationship was
+found \cite{PitchVsFrequency} but was deemed minor and unnecessary to incorporate
+for this project.
 
 \color{red}
 To do:
 \begin{itemize}
-	\item Describe pitch as perceived by people
+	\item Logarithmic relationship means distance metric.
+	\item Draw graph that shows this.
+	\item Explain note harmony
 	\item Describe tuning and equaled tempered tuning
 	\item Describe how this is relevant to pitch correction
 \end{itemize}
