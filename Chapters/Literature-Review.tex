@@ -37,7 +37,7 @@ sensation of pitch is scaled on an subjective ``high'' and ``low'' scale. The
 higher the frequency, the higher the pitch perceived and the lower the frequency,
 the lower the pitch perceived. This relationship between pitch and frequency is
 generally considered to be logarithmic. Slight deviations from the expected
-logarithmic relationship was found \cite{PitchVsFrequency} but was deemed minor
+logarithmic relationship was found\cite{PitchVsFrequency} but was deemed minor
 and unnecessary to incorporate for this project.
 
 In Figure \ref{fig:FrequencyVsPitch} the relationship of frequency and pitch is
@@ -47,6 +47,24 @@ history of convention and is irrelevant for now. The main takeaway is that the
 perceived change in pitch is constant for each successive note. From this graph it
 can be seen that frequency is exponentially dependent on pitch, or inversely,
 pitch is logarithmically dependent on frequency.
+
+From Figure \ref{fig:FrequencyVsPitch} a list of correct frequencies is obtained.
+The method by which this list is obtained, originates from a concept called pitch
+harmony. Two notes sounds good or in tune if their frequencies produce a simple
+ratio\cite{Harmony}. For example an octave produces a ratio of 1:2, a perfect 5th
+produces a ratio of 3:2. Figure \ref{fig:Harmony} shows how these two harmonies
+are seen when their waveforms are plotted. This simple pattern produced by simple
+ratio's is the origin of why two notes sound harmonious.
+
+This concept of harmony gives a simple method to start creating a list of
+frequencies that would sound good together. In table \ref{tab:PythagTuning} a list
+of these ratio's and corresponding interval names are given. This tuning method is called
+Pythagorean tuning and was used before 1X00's. This was naturally discovered
+because it corresponds to the different modes by which a string vibrates when
+plucked\cite{StringVibrate}.
+
+Unfortunately this Pythagorean method poses a problem when harpsichords and
+clavichords (piano-like instruments) were introduced.
 
 \color{red}
 To do:
