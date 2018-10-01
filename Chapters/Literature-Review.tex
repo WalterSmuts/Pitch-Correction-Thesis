@@ -51,19 +51,52 @@ pitch is logarithmically dependent on frequency.
 From Figure \ref{fig:FrequencyVsPitch} a list of correct frequencies is obtained.
 The method by which this list is obtained, originates from a concept called pitch
 harmony. Two notes sounds good or in tune if their frequencies produce a simple
-ratio\cite{Harmony}. For example an octave produces a ratio of 1:2, a perfect 5th
-produces a ratio of 3:2. Figure \ref{fig:Harmony} shows how these two harmonies
-are seen when their waveforms are plotted. This simple pattern produced by simple
-ratio's is the origin of why two notes sound harmonious.
+ratio\cite{Harmony}. For example an octave produces a ratio of 1:2 and a perfect
+5th produces a ratio of 3:2. Figure \ref{fig:Harmony} shows how these two
+harmonies are seen when their waveforms are plotted. The superposition created by
+the two notes creating the interval has a short repeating pattern. The fact that
+this pattern is short corresponds to the property of a simple ratio of
+frequencies.  This short pattern/simple ratio is the origin of why two notes sound
+harmonious.
+
+\begin{figure}[h]
+\centering
+{\bf Octave Interval}
+\begin{tabular}{c c c}
+	\includegraphics[align=c, width=0.4\textwidth,
+		trim={3.5cm 0 3.5cm 0},clip]
+		{HarmonyOctaveSeparate}
+
+	& \huge$\rightarrow$ &
+	\includegraphics[align=c, width=0.4\textwidth,
+		trim={3.5cm 0 3.5cm 0},clip]
+		{HarmonyOctaveSuper}\\
+\end{tabular}
+
+\centering
+
+{\bf Fifth Interval}
+\begin{tabular}{c c c}
+	\includegraphics[align=c, width=0.4\textwidth,
+		trim={3.5cm 0 3.5cm 0},clip]
+		{HarmonyFifthSeparate}
+	& \huge$\rightarrow$ &
+	\includegraphics[align=c, width=0.4\textwidth,
+		trim={3.5cm 0 3.5cm 0},clip]
+		{HarmonyFifthSuper}\\
+\end{tabular}
+\caption{Harmonic interference of two intervals}
+\label{fig:Harmony}
+\end{figure}
 
 This concept of harmony gives a simple method to start creating a list of
 frequencies that would sound good together. In table \ref{tab:PythagTuning} a list
-of these ratio's and corresponding interval names are given. This tuning method is called
-Pythagorean tuning and was used before 1X00's. This was naturally discovered
-because it corresponds to the different modes by which a string vibrates when
-plucked\cite{StringVibrate}.
+of these ratio's and corresponding interval names are given. This tuning method is
+called Pythagorean tuning and was used before XXXX's. This was naturally
+discovered because it corresponds to the different modes by which a string
+vibrates when plucked\cite{StringVibrate}.
 
-Unfortunately this Pythagorean method poses a problem when harpsichords and
+Unfortunately this Pythagorean method posed a problem when harpsichords and
 clavichords (piano-like instruments) were introduced.
 
 \color{red}
