@@ -1,17 +1,17 @@
 % !tex root = ../Thesis.tex
 
 This literature review attempts to cover all the subjects relevant to pitch
-correction. Music theory is investigated first, covering the topics of human
-pitch perception and tuning. This section attempts to determine what it means for
-pitch to be correct and how this relates to frequency. The idea is to get a list of
-correct frequencies derived from a tuning system. After it is well known what
+correction. Music theory is investigated first, covering the topics of human pitch
+perception and tuning. This section attempts to determine what it means for a
+pitch to be correct and how this relates to frequency. The idea is to get a list
+of correct frequencies derived from a tuning system. After it is well known what
 is musically considered to be a correct pitch, the general structure of how pitch
 correction is approached is investigated. This structure naturally splits up into
-modules and each of these modules is investigated further.
+modules and each module is investigated further.
 
 \section{Music Theory}
 
-The intent of this section is to come up with a definition of what will be
+The intent of this section is to come up with a definition of what will be a
 considered correct pitch. Some foundational work is required to define basic
 musical concepts in a rigorous way. To start we need to define exactly what is
 meant by a musical note.
@@ -139,10 +139,10 @@ unambiguous notation.
 This in not possible and is proved in Appendix A. The best one can do is choose
 which interval to keep perfect across all starting notes and choose a sufficiently
 small sub-division such that each of the wanted harmonic ratio's is close enough
-to an available note that it is imperceptible to the listener. This is exactly
-what equal tempered tuning does. The interval kept constant is the octave and it
-is divided into 12 sub-intervals called semitones.  Each semitone interval is
-equal to $\sqrt[12]{2}$. This interval has the property of when successively
+to an available note such that it is imperceptible to the listener. This is
+exactly what equal tempered tuning does. The interval kept constant is the octave
+and it is divided into 12 sub-intervals called semitones.  Each semitone interval
+is equal to $\sqrt[12]{2}$. This interval has the property of when successively
 applied 12 times it produces an octave interval. It also very closely matches all
 the required just tuning ratio's found in table \ref{tab:JustTuning}.
 
@@ -151,7 +151,7 @@ the required just tuning ratio's found in table \ref{tab:JustTuning}.
 \caption{Interval Names and Ratio's of Equal Tempered Tuning}
 \begin{tabu} to \textwidth { | X[l] | X[c] | X[r] | }
 	\hline \bf Interval Name & \bf Ratio  & Frequency relative to 440 Hz \\
-	\hline Union & $(\sqrt[12]{2})^0 = 1.000$ & 440 Hz \\
+	\hline Unison & $(\sqrt[12]{2})^0 = 1.000$ & 440 Hz \\
 	\hline Minor Second & $(\sqrt[12]{2})^1 = 1.059$ & 466 Hz \\
 	\hline Major Second & $(\sqrt[12]{2})^2 = 1.122$ & 494 Hz \\
 	\hline Minor Third & $(\sqrt[12]{2})^3 = 1.189$ & 523 Hz \\
@@ -177,17 +177,29 @@ the percentage error for each note. It can be seen that for each just tuning rat
 needed, an equal tempered tuning note is not far off. The largest error that the
 equal tempered tuning scale has, is less than 2\%.  This is considered small
 enough to be mostly imperceptible. This twelve tone equal temperament tuning
-system is what most modern digital instruments are based on.
+system is what most modern digital instruments are based on\cite{EqualUsage}.
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Show equal tempered tuning vs just interval graph
-	\item Tie back to the fact that this gives us a definition of correct
-\end{itemize}
-\color{black}
+\begin{figure}[h]
+\begin{tabular}{c c}
+	\includegraphics[align=c, width=0.5\textwidth]
+		{EqualVsJust}
+
+	\includegraphics[align=c, width=0.5\textwidth]
+		{ErrorEqual}\\
+\end{tabular}
+\caption{Comparison of just tuning and equal tempered tuning}
+\label{fig:JustVsEqual}
+\end{figure}
+
+Table \ref{tab:EqualTemper} finally gives us a definition of what is considered to
+be correct frequency. Other tuning methods exist but since twelve tone equal
+tempered tuning is the most used, it will be considered the objective of this
+project. Now that the idea of a correct pitch is well known, the general pitch
+correction structure is investigated.
 
 \section{General Pitch Correction Structure}
+
+Start here
 
 \color{red}
 To Do:
