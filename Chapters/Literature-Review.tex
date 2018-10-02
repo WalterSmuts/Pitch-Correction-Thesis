@@ -90,21 +90,57 @@ harmonious.
 \end{figure}
 
 This concept of harmony gives a simple method to start creating a list of
-frequencies that would sound good together. In table \ref{tab:PythagTuning} a list
-of these ratio's and corresponding interval names are given. This tuning method is
-called Pythagorean tuning and was used before XXXX's. This was naturally
-discovered because it corresponds to the different modes by which a string
-vibrates when plucked\cite{StringVibrate}.
+frequencies that would sound good together. This list is created by starting with
+an arbitrary frequency (440 Hz) and using these simple harmonic ratio's to create
+a scale. In table \ref{tab:JustTuning} a list of these ratio's and corresponding
+interval names are given. This is referred to as {\it just tuning}. This tuning
+method was naturally discovered because it corresponds to the different modes by
+which a string vibrates when plucked\cite{StringVibrate}.
 
-Unfortunately this Pythagorean method posed a problem when harpsichords and
-clavichords (piano-like instruments) were introduced.
+\begin{table}[h]
+\centering
+\caption{Interval Names and Ratio's of Just Tuning}
+\begin{tabu} to \textwidth { | X[l] | X[c] | X[r] | }
+	\hline \bf Interval Name & \bf Ratio  & Frequency Relative to 55 Hz \\
+	\hline
+\end{tabu}
+\label{tab:JustTuning}
+\end{table}
 
 \color{red}
 To do:
 \begin{itemize}
-	\item In tune
-	\item Harmony
-	\item Tuning system and equal tempered tuning
+	\item Complete table
+\end{itemize}
+\color{black}
+
+\noindent Unfortunately this just tuning method posed a problem when harpsichords
+and clavichords (piano-like instruments) were introduced. These instruments
+required to be in tune for any starting note. For a tuning system to allow this,
+an interval is required that touches all the wanted intervals when consecutively
+applied. Since pitch is logarithmically dependent on frequency, we require a
+single real number $r$ raised to the power of some arbitrary integer n so that the
+result equals all the desired interval ratios.  Mathematically we require:
+
+\begin{equation}\label{GeneralRationalTheorem}
+	\exists r \in \mathbb{R} \text{ s.t. } R \subseteq \{ r^n | n \in \mathbb{N} \}
+	\text{ where } R = \{ \frac{2}{1}, \frac{3}{2}, \dots \}
+\end{equation}
+
+\noindent This in not possible, as shown in Equation \ref{eq:mine}. The best one
+can do is choose which interval you want to keep consistent accross all starting
+notes and choose a sufficiently small sub-division so that each the note is close
+enough to it's wanted harmonic ratio that it is imperceptable to the listener.
+This is exactly what equal tempered tuning does. The interval kept constant is the
+octave and it is divided into 12 sub-intervals called semitones. Table
+\ref{table:EqualTemper} shows the modern equal tempered tuning ratios and their
+related interval names. For all western scales a subset of these frequencies are
+taken to produce the desired scale.
+
+\color{red}
+To do:
+\begin{itemize}
+	\item Show equal tempered tuning vs just interval graph
 	\item Tie back to the fact that this gives us a definition of correct
 \end{itemize}
 \color{black}
