@@ -32,7 +32,7 @@ and needs to be covered in more depth.
 
 Pitch and frequency are terms often used interchangeably but does not refer to the
 same concept. Pitch is a \textit{sensation} experienced by humans when they hear
-notes containing frequencies between 31Hz and 17.6 kHz\cite{Hearing}. The
+notes containing frequencies between 31 Hz and 17.6 kHz\cite{Hearing}. The
 sensation of pitch is scaled on an subjective ``high'' and ``low'' scale. The
 higher the frequency, the higher the pitch perceived and the lower the frequency,
 the lower the pitch perceived. This relationship between pitch and frequency is
@@ -95,47 +95,89 @@ an arbitrary frequency (440 Hz) and using these simple harmonic ratio's to creat
 a scale. In table \ref{tab:JustTuning} a list of these ratio's and corresponding
 interval names are given. This is referred to as {\it just tuning}. This tuning
 method was naturally discovered because it corresponds to the different modes by
-which a string vibrates when plucked\cite{StringVibrate}.
+which a string vibrates when plucked\cite{Strings}.
 
 \begin{table}[h]
 \centering
 \caption{Interval Names and Ratio's of Just Tuning}
 \begin{tabu} to \textwidth { | X[l] | X[c] | X[r] | }
-	\hline \bf Interval Name & \bf Ratio  & Frequency Relative to 55 Hz \\
+	\hline \bf Interval Name & \bf Ratio  & Frequency relative to 440 Hz \\
+	\hline Unison & 1/1 = 1.000 & 440 Hz \\
+	\hline Minor Second & 16/15 = 1.067 & 469 Hz \\
+	\hline Major Second & 9/8 = 1.125 & 495 Hz \\
+	\hline Minor Third & 6/5 = 1.200 & 528 Hz \\
+	\hline Major Third & 5/4 = 1.250 & 550 Hz \\
+	\hline Perfect Fourth & 4/3 = 1.333 & 587 Hz \\
+	\hline Tritone & 7/5 = 1.400 & 616 Hz \\
+	\hline Perfect Fifth & 3/2 = 1.500 & 660 Hz \\
+	\hline Minor Sixth & 8/5 = 1.600 & 704 Hz \\
+	\hline Major Sixth & 5/3 = 1.667 & 733 Hz \\
+	\hline Minor Seventh & 15/8 = 1.778 & 782 Hz \\
+	\hline Major Seventh & 15/8 = 1.875 & 825 Hz \\
+	\hline Octave & 2/1 = 2.000 & 880 Hz \\
 	\hline
 \end{tabu}
 \label{tab:JustTuning}
 \end{table}
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Complete table
-\end{itemize}
-\color{black}
+Unfortunately this just tuning method posed a problem when harpsichords and
+clavichords (piano-like instruments) were introduced. These instruments required
+to be in tune for any starting note. For a tuning system to allow this, a smallest
+interval is required that touches all the wanted intervals when each successive
+note is found using this smallest interval. Since pitch is logarithmically
+dependent on frequency, we require a single real number, r, raised to the power of
+a subset, n, of positive integers such that the result contains all the desired
+interval ratios. Equation \ref{eq:HarmonyRequirement} shows what is required in
+unambiguous notation.
 
-\noindent Unfortunately this just tuning method posed a problem when harpsichords
-and clavichords (piano-like instruments) were introduced. These instruments
-required to be in tune for any starting note. For a tuning system to allow this,
-an interval is required that touches all the wanted intervals when consecutively
-applied. Since pitch is logarithmically dependent on frequency, we require a
-single real number $r$ raised to the power of some arbitrary integer n so that the
-result equals all the desired interval ratios.  Mathematically we require:
-
-\begin{equation}\label{GeneralRationalTheorem}
-	\exists r \in \mathbb{R} \text{ s.t. } R \subseteq \{ r^n | n \in \mathbb{N} \}
-	\text{ where } R = \{ \frac{2}{1}, \frac{3}{2}, \dots \}
+\begin{equation}\label{eq:HarmonyRequirement}
+	\exists r \in \mathbb{R} \text{ s.t. }
+	R \subseteq \{ r^n | n \in \mathbb{N}_0 \}
+	\text{ where } R = \{ \frac{1}{1}, \frac{15}{16}, \frac{9}{8}, \frac{6}{5}, \dots \}
 \end{equation}
 
-\noindent This in not possible, as shown in Equation \ref{eq:mine}. The best one
-can do is choose which interval you want to keep consistent accross all starting
-notes and choose a sufficiently small sub-division so that each the note is close
-enough to it's wanted harmonic ratio that it is imperceptable to the listener.
-This is exactly what equal tempered tuning does. The interval kept constant is the
-octave and it is divided into 12 sub-intervals called semitones. Table
-\ref{table:EqualTemper} shows the modern equal tempered tuning ratios and their
-related interval names. For all western scales a subset of these frequencies are
-taken to produce the desired scale.
+This in not possible and is proved in Appendix A. The best one can do is choose
+which interval to keep perfect across all starting notes and choose a sufficiently
+small sub-division such that each of the wanted harmonic ratio's is close enough
+to an available note that it is imperceptible to the listener. This is exactly
+what equal tempered tuning does. The interval kept constant is the octave and it
+is divided into 12 sub-intervals called semitones.  Each semitone interval is
+equal to $\sqrt[12]{2}$. This interval has the property of when successively
+applied 12 times it produces an octave interval. It also very closely matches all
+the required just tuning ratio's found in table \ref{tab:JustTuning}.
+
+\begin{table}[h]
+\centering
+\caption{Interval Names and Ratio's of Equal Tempered Tuning}
+\begin{tabu} to \textwidth { | X[l] | X[c] | X[r] | }
+	\hline \bf Interval Name & \bf Ratio  & Frequency relative to 440 Hz \\
+	\hline Union & $(\sqrt[12]{2})^0 = 1.000$ & 440 Hz \\
+	\hline Minor Second & $(\sqrt[12]{2})^1 = 1.059$ & 466 Hz \\
+	\hline Major Second & $(\sqrt[12]{2})^2 = 1.122$ & 494 Hz \\
+	\hline Minor Third & $(\sqrt[12]{2})^3 = 1.189$ & 523 Hz \\
+	\hline Major Third & $(\sqrt[12]{2})^4 = 1.259$ & 554 Hz \\
+	\hline Perfect Fourth & $(\sqrt[12]{2})^5 = 1.334$ & 587 Hz \\
+	\hline Tritone & $(\sqrt[12]{2})^6 = 1.414$ & 622 Hz \\
+	\hline Perfect Fifth & $(\sqrt[12]{2})^7 = 1.498$ & 659 Hz \\
+	\hline Minor Sixth & $(\sqrt[12]{2})^8 = 1.587$ & 598 Hz \\
+	\hline Major Sixth & $(\sqrt[12]{2})^9 = 1.681$ & 740 Hz \\
+	\hline Minor Seventh & $(\sqrt[12]{2})^{10} = 1.781$ & 784 Hz \\
+	\hline Major Seventh & $(\sqrt[12]{2})^{11} = 1.887$ & 831 Hz \\
+	\hline Octave & $(\sqrt[12]{2})^{12} = 2.000$ & 880 Hz \\
+	\hline
+\end{tabu}
+\label{tab:EqualTemper}
+\end{table}
+
+Table \ref{tab:EqualTemper} shows the modern equal tempered tuning ratios and
+their related interval names. For all western scales a subset of these frequencies
+are taken to produce the desired scale. Figure \ref{fig:JustVsEqual} shows a
+scatter plot of the ratio's of just tuning and equal tempered tuning and a plot of
+the percentage error for each note. It can be seen that for each just tuning ratio
+needed, an equal tempered tuning note is not far off. The largest error that the
+equal tempered tuning scale has, is less than 2\%.  This is considered small
+enough to be mostly imperceptible. This twelve tone equal temperament tuning
+system is what most modern digital instruments are based on.
 
 \color{red}
 To do:
