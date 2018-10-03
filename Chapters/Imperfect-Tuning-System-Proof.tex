@@ -1,0 +1,41 @@
+% !tex root = ../Thesis.tex
+
+To prove that no perfect tuning system exists, is equivalent to proving the
+following proposition:
+
+\begin{equation}\label{eq:GeneralProp}
+	\nexists r \in \mathbb{R} \text{ s.t. }
+	R \subseteq \{ r^n | n \in \mathbb{N}_0 \}
+	\text{ where } R = \{ \frac{1}{1}, \frac{15}{16}, \frac{9}{8}, \frac{6}{5}, \dots \}
+\end{equation}
+
+R is the set of all the harmonic ratios required in the wanted tuning system. Only
+two of these ratios, the most fundamental ratios in any tuning system, are
+required for the proof. The octave interval, ratio 2/1, and the perfect fifth, ratio
+3/2. The proof approach is a proof by contradiction.
+
+Assume there exists:
+\begin{equation}\label{eq:SpecificProp}
+	r^n = \frac{2}{1} \text{ and } r^m = \frac{3}{2}
+	\text{ s.t. }
+	r \in \mathbb{R} \text{ and } n,m \in \mathbb{N}_0
+\end{equation}
+
+Taking the $\log_{2}$ of each equation in \ref{eq:SpecificProp} the follwing two
+equations are obtained:
+
+\begin{equation}\label{eq:1}
+	\log_{2}(r) = \frac{\log_{2}(2)}{n}
+\end{equation}
+\begin{equation}\label{eq:2}
+	\log_{2}(r) = \frac{\log_{2}(3) - \log_{2}(2)}{m}
+\end{equation}
+
+Equating equation \ref{eq:1} and equation \ref{eq:2} and simplifying, the following
+equation is obtained:
+\begin{equation}\label{eq:2}
+	\log_{2}(3) = \frac{m+n}{n}
+\end{equation}
+
+Since both n and m are elements of $\mathbb{N}_0$, the RHS is rational.
+The number $\log_{2}(3)$ is known to be irration. This is a contradiction. Q.E.D.
