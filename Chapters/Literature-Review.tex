@@ -4,7 +4,7 @@ This literature review attempts to cover all the subjects relevant to pitch
 correction. Music theory is investigated first, covering the topics of human pitch
 perception and tuning. This section attempts to determine what it means for a
 pitch to be correct and how this relates to frequency. The idea is to get a list
-of correct frequencies derived from a tuning system. After it is well known what
+of correct frequencies derived from a tuning system. After it is well-known what
 is musically considered to be a correct pitch, the general structure of how pitch
 correction is approached is investigated. This structure naturally splits up into
 modules and each module is investigated further.
@@ -33,7 +33,7 @@ and needs to be covered in more depth.
 Pitch and frequency are terms often used interchangeably but does not refer to the
 same concept. Pitch is a \textit{sensation} experienced by humans when they hear
 notes containing frequencies between 31 Hz and 17.6 kHz\cite{Hearing}. The
-sensation of pitch is scaled on an subjective ``high'' and ``low'' scale. The
+sensation of pitch is scaled on a subjective ``high'' and ``low'' scale. The
 higher the frequency, the higher the pitch perceived and the lower the frequency,
 the lower the pitch perceived. This relationship between pitch and frequency is
 generally considered to be logarithmic. Slight deviations from the expected
@@ -92,7 +92,7 @@ harmonious.
 This concept of harmony gives a simple method to start creating a list of
 frequencies that would sound good together. This list is created by starting with
 an arbitrary frequency (440 Hz) and using these simple harmonic ratio's to create
-a scale. In table \ref{tab:JustTuning} a list of these ratio's and corresponding
+a scale. In table \ref{tab:JustTuning} a list of these ratios and corresponding
 interval names are given. This is referred to as {\it just tuning}. This tuning
 method was naturally discovered because it corresponds to the different modes by
 which a string vibrates when plucked\cite{Strings}.
@@ -122,9 +122,9 @@ which a string vibrates when plucked\cite{Strings}.
 
 Unfortunately this just tuning method posed a problem when harpsichords and
 clavichords (piano-like instruments) were introduced. These instruments required
-to be in tune for any starting note. For a tuning system to allow this, a smallest
+to be in tune for any starting note. For a tuning system to allow this, a small
 interval is required that touches all the wanted intervals when each successive
-note is found using this smallest interval. Since pitch is logarithmically
+note is found using this small interval. Since pitch is logarithmically
 dependent on frequency, we require a single real number, r, raised to the power of
 a subset, n, of positive integers such that the result contains all the desired
 interval ratios. Equation \ref{eq:HarmonyRequirement} shows what is required in
@@ -133,7 +133,7 @@ unambiguous notation.
 \begin{equation}\label{eq:HarmonyRequirement}
 	\exists r \in \mathbb{R} \text{ s.t. }
 	R \subseteq \{ r^n | n \in \mathbb{N}_0 \}
-	\text{ where } R = \{ \frac{1}{1}, \frac{15}{16}, \frac{9}{8}, \frac{6}{5}, \dots \}
+	\text{ where } R = \{ \frac{1}{1}, \frac{16}{15}, \frac{9}{8}, \frac{6}{5}, \dots \}
 \end{equation}
 
 This in not possible and is proved in Appendix A. The best one can do is choose
@@ -144,7 +144,7 @@ exactly what equal tempered tuning does. The interval kept constant is the octav
 and it is divided into 12 sub-intervals called semitones.  Each semitone interval
 is equal to $\sqrt[12]{2}$. This interval has the property of when successively
 applied 12 times it produces an octave interval. It also very closely matches all
-the required just tuning ratio's found in table \ref{tab:JustTuning}.
+the required just tuning ratios found in table \ref{tab:JustTuning}.
 
 \begin{table}[h]
 \centering
@@ -194,7 +194,7 @@ system is what most modern digital instruments are based on\cite{EqualUsage}.
 Table \ref{tab:EqualTemper} finally gives us a definition of what is considered to
 be correct frequency. Other tuning methods exist but since twelve tone equal
 tempered tuning is the most used, it will be considered the objective of this
-project. Now that the idea of a correct pitch is well known, the general pitch
+project. Now that the idea of a correct pitch is well-known, the general pitch
 correction structure is investigated.
 
 \section{General Pitch Correction Structure}
