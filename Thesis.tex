@@ -36,6 +36,65 @@
 \title{Pitch Correction}
 \author{Walter Smuts}
 
+\newcounter{quoteCounter}
+\setcounter{quoteCounter}{1}
+\newcommand\addQuote{
+\begin{center}
+
+	\ifnum\thequoteCounter=1
+		In the beginning the Universe was created.\\
+		This has made a lot of people very angry and has\\
+		been widely regarded as a bad move.\\
+		\vspace{1cm}
+		- Douglas Adams
+	\fi
+
+	\ifnum\thequoteCounter=2
+		Always remember that you are absolutely unique.\\
+		Just like everyone else.\\
+		\vspace{1cm}
+		- Margaret Mead
+	\fi
+
+	\ifnum\thequoteCounter=3
+		Talking about music\\
+		is like dancing about architecture.\\
+		\vspace{1cm}
+		 — Steve Martin
+	\fi
+
+
+	\ifnum\thequoteCounter=4
+		Wagner’s music is better than it sounds.\\
+		\vspace{1cm}
+		— Mark Twain
+	\fi
+
+	\ifnum\thequoteCounter=5
+		A gentleman is someone who can\\
+		play the accordion,
+		but doesn't.\\
+		\vspace{1cm}
+		— Tom Waits
+	\fi
+
+	\ifnum\thequoteCounter=6
+		I'd agree with you, but then\\
+		we'd both be wrong.\\
+		\vspace{1cm}
+		- Russell Lynes
+	\fi
+
+	\stepcounter{quoteCounter}
+
+	\ifnum\thequoteCounter=7
+		\setcounter{quoteCounter}{1}
+	\fi
+
+\end{center}
+
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION HEADING STYLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,7 +161,7 @@
 \hbox{}
 \vspace*{\fill}
 \begin{center}
-	\it Insert inspirational quote here.
+	\it \addQuote
 \end{center}
 \vspace{\fill}
 \thispagestyle{empty}
