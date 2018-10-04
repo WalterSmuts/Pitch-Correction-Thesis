@@ -240,25 +240,61 @@ To do:
 
 \section{Frequency Detection}
 
+Frequency detection is an essential step in the pitch corrector system. Before the
+pitch can be corrected, it must be known what the current pitch value is. In the
+field of study, the term pitch detection and frequency detection is
+interchangeable terms. Both refer to finding the fundamental frequency of a
+periodic or semi-periodic signal\cite{ComparitivePitch}. There are several methods
+used depending on the application, but all fall under two categories: Time domain
+methods and frequency domain methods\cite{PDABook}.
+
+The time domain methods detects the frequency or timing of some time domain
+feature that has a known relation to the fundamental frequency of the signal.
+Examples of features commonly used are peaks and zero crossings. Some time domain
+methods use auto-correlation to measure similarity between a signal and
+time-lagged visions of that signal\cite{PDABook}.
+
+Frequency domain methods use operations similar to a Fourier-Transform to inspect
+the frequency components of a signal. Windowing the signal is recommended to
+reduce spectral smearing\cite{Windowing}.
+
 \color{red}
 To do:
 \begin{itemize}
-	\item Explain that there is no single go-to method
-	\item Different methods have different characteristics
-	\item What is important for this application
-	\item Give overview of which methods will be investigated
+	\item Expand on frequency domain methods.
 \end{itemize}
 \color{black}
 
 \subsection{Zero Crossing Method}
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe method roughly
-	\item More in depth description comes in implementation section
-\end{itemize}
-\color{black}
+The zero-crossing method is a time domain method which uses the zero-crossings to
+determine the period, and hence, the fundamental frequency of the signal. There
+are two zero crossings in a single period, therefore this detector can produce
+results at a rate of twice the lowest frequency of the signal. Frequency is
+related to period by equation \ref{eq:PeriodVsFreq}.
+
+\begin{equation}\label{eq:PeriodVsFreq}
+	F_0 = \frac{1}{p} \text{ where } F_0 \text{ is measured in Hz and p is
+	measured in seconds}
+\end{equation}
+
+Before the signal is passed to the zero-crossing detector some preprocessing is
+done to accentuate some features. Linear predictive coding is a common
+preprocessing step used when a zero-crossing detector is used\cite{PDABook}.
+Figure \ref{fig:ZeroCrossing} shows a simple graph of how the zero-crossing
+detector works. It calculates the time elapsed between two consecutive zero
+crossings and uses \ref{eq:PeriodVsFreq} to calculate the fundamental frequency.
+
+\begin{figure}[h]
+	\label{fig:ZeroCrossing}
+	\includegraphics[width=\textwidth]{ZeroCrossingSimple}
+	\caption{Zero crossing detector on 440 Hz sinusoidal signal}
+\end{figure}
+
+Some obvious implementation details and issues can be conceived but was not found
+to be exhaustively investigated in the literature on the subject. Since this is
+regarded as a very basic pitch detection algorithm these issues were personally
+solved and is further discussed in the implementation section.
 
 \subsection{Other Method}
 
