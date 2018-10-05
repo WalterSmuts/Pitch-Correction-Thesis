@@ -312,6 +312,21 @@ To do:
 
 \section{Frequency Scaling}
 
+Since pitch is logarithmically dependent on frequency, as shown in figure
+\ref{PitchVsFrequency}, the act of pitch shifting is analogous to frequency
+scaling. This is due to one of the logarithmic identities and is shown in equation
+\ref{eq:LogLaw}.
+
+\begin{equation}\label{eq:LogLaw}
+\begin{split}
+	p=\log{(f)} & \text{\hspace{1cm} (given)}\\
+	p_{shifted}=p+\Delta p & \text{\hspace{1cm} (pitch shifting)}\\
+	\downarrow \hspace{1cm} \\
+	\log{(f_{scaled})}=\log{(f)}+\log{(\Delta p)}
+	& \text{\hspace{1cm} (substitute)}
+\end{split}
+\end{equation}
+
 \color{red}
 To do:
 \begin{itemize}
