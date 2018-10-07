@@ -64,9 +64,12 @@ could be used to alter the pitch of audio files. His techniques for detecting
 pitch, using a simplification of the autocorrelation function, was considered
 superior to the state of the art at that time. He implemented the first version of
 his pitch correcting algorithm on his Macintosh computer. His first demonstration
-was considered a success and the company ``Antares Audio'' was founded. They
-created a product called ``AutoTune'' which was popularised in 1998 by Cher in her
-song ``Believe''.
+was considered a success and the company ``Antares Audio'' was founded. A patent
+was filed in 1997 for a ``Pitch detection and intonation correction apparatus and
+method''. They created a product called ``AutoTune'' which was popularised in 1998
+by Cher in her song ``Believe'' which made heavy use of the AutoTune pitch
+correction effect. AutoTune was the first product capable of automatic real time
+pitch correction.
 
 \begin{figure}[h]
 	\centering
@@ -77,18 +80,26 @@ song ``Believe''.
 \end{figure}
 
 AutoTune comes in a rack mounted unit for live performances shown in figure
-\ref{fig:AutoTuneRack} or as a plugin with the interface shown in figure
-\ref{fig:AutoTunePlugin}. The software has evolved to allow for many more features
-than the original pitch correction effect that the name suggests. Modern AutoTune
-is still considered the state of the art product by audio engineers.
+\ref{fig:AutoTuneRack} or as a VST plugin. The software has evolved to allow for
+many more features than the original pitch correction effect that the name
+suggests. Modern AutoTune is still considered the state of the art product by
+audio engineers.
 
-\color{red}
-To Do:
-\begin{itemize}
-	\item Open source pitch correction AutoTalent by Tom Baran
-	\item Smule App
-\end{itemize}
-\color{black}
+In 2009 Tom Baran, an electrical engineer, wrote an open source pitch corrector.
+This pitch corrector was written in the C programming language as a VST (Virtual
+Studio Technology) plugin. At least two ports have been written and are up on
+GitHub. The fact that this project is open source allows for inspection of the
+code and provides insight in what design choices has been made. It uses a variant
+of an FFT algorithm to inspect the spectrum and find the pitch, a PSOLA algorithm
+to shift the pitch and a cubic spline interpolation algorithm for re-sampling.
+
+Finally Smule, a mobile phone application, was released in 2013. It's an
+application for amateur singers to record themselves singing songs and sharing the
+recordings on social media. The application features a pitch correction effect to
+improve the quality of the recording before it is shared. This pitch correction is
+done based on knowing what the harmony of the current note should be since it uses
+a pre-recorded backing track. A patent was filled by Smule in 2011 for
+``Pitch-correction of vocal performance in accord with score-coded harmonies''.
 
 \section{Approach Taken}
 
