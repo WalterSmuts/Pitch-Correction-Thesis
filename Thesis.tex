@@ -24,10 +24,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{xfrac}
-
-% Only used for blind text
 \usepackage[english]{babel}
-\usepackage{blindtext}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SPECIFIC INFO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -318,15 +315,14 @@ intention of passing it off as his or her own work.
 \bibliographystyle{ieeetr}
 \addcontentsline{toc}{chapter}{References}
 
-\appendix
+\chapter*{Appendix}
+\addcontentsline{toc}{chapter}{Appendix}
+\pagestyle{plain}
 
-\chapter{Imperfect Tuning System Proof}
+\section{Imperfect Tuning System Proof}
 
 \input{Chapters/Imperfect-Tuning-System-Proof}
-
-\chapter{Proof 2}
-
-\blindtext
+\newpage
 
 \end{document}
 
