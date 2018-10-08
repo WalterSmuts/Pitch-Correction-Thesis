@@ -89,9 +89,9 @@ In 2009 Tom Baran, an electrical engineer, wrote an open source pitch corrector.
 This pitch corrector was written in the C programming language as a VST (Virtual
 Studio Technology) plugin. At least two ports have been written and are up on
 GitHub. The fact that this project is open source allows for inspection of the
-code and provides insight in what design choices has been made. It uses a variant
-of an FFT algorithm to inspect the spectrum and find the pitch, a PSOLA algorithm
-to shift the pitch and a cubic spline interpolation algorithm for re-sampling.
+code and provides insight in what design choices has been made. It uses an
+autocorrelation approach to find the pitch, a PSOLA algorithm to shift the pitch
+and a cubic spline interpolation algorithm for re-sampling.
 
 Finally Smule, a mobile phone application, was released in 2013. It's an
 application for amateur singers to record themselves singing songs and sharing the
