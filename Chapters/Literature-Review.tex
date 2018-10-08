@@ -236,14 +236,12 @@ is an attempt at keeping the regions of the formants consistent before and after
 the synthetic pitch shift. In the source code for AutoTalent, Tom Baran mentions
 that he considers the formant filter experimental\cite{AutoTalent}.
 
-The AutoTune patent\cite{AutoTunePatent}
-
-\color{red}
-To do:
-\begin{itemize}
-	\item Finish lit review on AutoTune general structure
-\end{itemize}
-\color{black}
+The AutoTune patent\cite{AutoTunePatent} contains some flow diagrams explaining
+the workings of the pitch corrector invention. These are very cumbersome and
+deemed to be unnecessary, even for an appendix. The basic structure is very
+similar to figure \ref{fig:AutoTalent} and figure \ref{fig:SmulePatent}. The
+patent suggests the use of a modified autocorrelation function to detect the
+pitch and a method by Lent\cite{LentPitchShifter} to shift the pitch.
 
 The Smule patent\cite{SmulePatent} was investigated for hints about what structure
 and sub modules were used for their application. From figure \ref{fig:SmulePatent}
@@ -266,9 +264,9 @@ harmonies and scale the music is written in.
 
 All three pitch correction systems seem to have some common aspects. They are
 separated into a frequency detector, a pitch choosing algorithm and a frequency
-scaling algorithm. Next, each sub module will be investigated separately.
-Segmentation will be discussed first followed by the frequency detection and
-scaling algorithms.
+scaling algorithm. Each system has some additional structures other than the basic
+pitch correction added, either to improve the result or for additional features.
+The major modules will be investigated further.
 
 \section{Segmentation}
 
