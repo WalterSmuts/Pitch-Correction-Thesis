@@ -316,6 +316,8 @@ intention of passing it off as his or her own work.
 \addcontentsline{toc}{chapter}{References}
 
 \chapter*{Appendix}
+\setcounter{section}{0}
+\renewcommand\thesection{\Alph{section})}
 \addcontentsline{toc}{chapter}{Appendix}
 \pagestyle{plain}
 
@@ -323,6 +325,12 @@ intention of passing it off as his or her own work.
 
 \input{Chapters/Imperfect-Tuning-System-Proof}
 \newpage
+
+\section{Full AutoTalent Flow Diagram}
+\vfill
+\includegraphics[width=\textwidth, trim={20cm 1cm 20cm 3.5cm},clip]
+{AutoTalentFlowDiagram}
+\vfill
 
 \end{document}
 

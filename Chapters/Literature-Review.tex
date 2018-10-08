@@ -202,23 +202,73 @@ correction structure is investigated.
 As discussed in the ``History of Audio Pitch Correction'' section in the
 introduction, there are currently three modern pitch correction systems accessible
 for guidance:
-AutoTune\cite{AutoTunePatent},
-AutoTalent\cite{AutoTalent} and
+AutoTalent\cite{AutoTalent},
+AutoTune\cite{AutoTunePatent} and
 Smule\cite{SmulePatent}.
+The easiest system to get information from is the open source AutoTalent code. The
+other two are proprietary and the only reliable information found is that
+contained in their patents.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth, trim={20cm 1cm 20cm 25cm},clip]
+	{AutoTalentFlowDiagram}
+	\caption{AutoTalent Flow diagram\cite{AutoTalent}}
+	\label{fig:AutoTalent}
+\end{figure}
+
+On Tom Baran's AutoTalent website\cite{AutoTalent}, there is some explanation of
+how his pitch corrector works. Figure \ref{fig:AutoTalent} shows a section of the
+flow diagram provided by him for his explanation. The full flow diagram is in
+Appendix B. The input signal is supplied to a pitch detector. This detector works
+using a type of autocorrelation function mentioned in his explanation on the
+website. The detected pitch is passed to a pitch manipulation block which is a
+slightly complicated algorithm(see Appendix B) to choose which pitch the pitch
+shifter will attempt to shift the output to. A confidence metric is also provided
+by the pitch detector and eventually used by the pitch shifter to reduce the
+effect when confidence is low. The pitch shifter works using a PSOLA algorithm and
+is claimed to produce less artifacts than a phase vocoder based pitch shifter. A
+formant correction pre and post filter is also provided.
+
+Formants are the regions in the spectrum where the harmonics of a vocal signal as
+a group, peaks\cite{Formants}. The location and size of these formants don't
+naturally change, but do when pitch is synthetically shifted. This formant filter
+is an attempt at keeping the regions of the formants consistent before and after
+the synthetic pitch shift. In the source code for AutoTalent, Tom Baran mentions
+that he considers the formant filter experimental\cite{AutoTalent}.
+
+The AutoTune patent\cite{AutoTunePatent}
 
 \color{red}
-To Do:
+To do:
 \begin{itemize}
-	\item Stages and sections needed e.g.:
-	\begin{itemize}
-		\item Segmentation/Windowing
-		\item Frequency detection
-		\item Decide where to shift
-		\item Frequency scaling
-	\end{itemize}
-	\item Add a flow diagram
+	\item Finish lit review on AutoTune general structure
 \end{itemize}
 \color{black}
+
+The Smule patent\cite{SmulePatent} was investigated for hints about what structure
+and sub modules were used for their application. From figure \ref{fig:SmulePatent}
+it can be seen that they have two streams. A melody stream and a harmony stream.
+The harmony stream is irrelevant for pitch correction and will be ignored. The
+first block in the melody stream is a low pass filter, downsampler and decimater.
+This block represents the analog to digital converter and some pre-processing for
+the rest of the system. Thereafter a pitch detection algorithm finds the pitch
+being sung. This information, with the pre-processed signal and a target pitch is
+fed into a pitch shifting algorithm(PSOLA) to correct the pitch. The target pitch
+is found by some pitch choosing algorithm that uses the knowledge of what
+harmonies and scale the music is written in.
+
+\begin{figure}[h]
+	\includegraphics[angle=-90,width=\textwidth, trim={5mm -1cm 5mm 0cm},clip]
+	{SmulePatent}
+	\caption{Smule patent Flow diagram\cite{SmulePatent}}
+	\label{fig:SmulePatent}
+\end{figure}
+
+All three pitch correction systems seem to have some common aspects. They are
+separated into a frequency detector, a pitch choosing algorithm and a frequency
+scaling algorithm. Next, each sub module will be investigated separately.
+Segmentation will be discussed first followed by the frequency detection and
+scaling algorithms.
 
 \section{Segmentation}
 
