@@ -268,29 +268,6 @@ scaling algorithm. Each system has some additional structures other than the bas
 pitch correction added, either to improve the result or for additional features.
 The major modules will be investigated further.
 
-\section{Segmentation}
-
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe what segmentation is and why it is necessary
-	\item Describe stages
-	\begin{itemize}
-		\item Split (overlap)
-		\item Do computation
-		\item Stitch (overlap and add)
-	\end{itemize}
-	\item Reason to overlap and size of overlapping (TRADE-OFF)
-	\item Window size (TRADE-OFF)
-	\begin{itemize}
-		\item Small means low resolution
-		\item Large means latency
-		\item Small generally means more computation
-	\end{itemize}
-	\item Properties to preserve relevant to real time auto tuning
-\end{itemize}
-\color{black}
-
 \section{Frequency Detection}
 
 Frequency detection is an essential step in the pitch corrector system. Before the

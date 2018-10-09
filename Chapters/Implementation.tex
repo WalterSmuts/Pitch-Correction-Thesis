@@ -73,6 +73,24 @@ To do:
 \color{red}
 To do:
 \begin{itemize}
+	\item Segmentation!!!
+	\begin{itemize}
+		\item Describe what segmentation is and why it is necessary
+		\item Describe stages
+		\begin{itemize}
+			\item Split (overlap)
+			\item Do computation
+			\item Stitch (overlap and add)
+		\end{itemize}
+		\item Reason to overlap and size of overlapping (TRADE-OFF)
+		\item Window size (TRADE-OFF)
+		\begin{itemize}
+			\item Small means low resolution
+			\item Large means latency
+			\item Small generally means more computation
+		\end{itemize}
+		\item Properties to preserve relevant to real time auto tuning
+	\end{itemize}
 	\item Flow diagram
 	\item Actual code snips from Octave source code
 \end{itemize}
@@ -94,36 +112,21 @@ To do:
 To do:
 \begin{itemize}
 	\item Describe why choosing wanted frequency is not trivial
-\end{itemize}
-\color{black}
-
-\subsection{Naive Approach}
-
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe approach
-	\item Show results of approach
-\end{itemize}
-\color{black}
-
-\subsection{Schmitt Trigger Approach}
-
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe approach
-	\item Show results of approach
-\end{itemize}
-\color{black}
-
-\subsection{Evaluation Metric}
-
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe metric
-	\item Show why Schmitt trigger is better
+	\item Naive approach
+	\begin{itemize}
+		\item Describe approach
+		\item Show results of approach
+	\end{itemize}
+	\item Schmitt Trigger Approach
+	\begin{itemize}
+		\item Describe approach
+		\item Show results of approach
+	\end{itemize}
+	\item Evaluation Metric
+	\begin{itemize}
+		\item Describe metric
+		\item Show why Schmitt trigger is better
+	\end{itemize}
 \end{itemize}
 \color{black}
 
@@ -148,7 +151,7 @@ To do:
 \end{itemize}
 \color{black}
 
-\subsection{Other Method}
+\subsection{Autocorrelation Method}
 
 \color{red}
 To do:
