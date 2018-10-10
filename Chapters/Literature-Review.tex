@@ -393,18 +393,31 @@ scaling. This is due to one of the logarithmic identities and is shown in equati
 
 The general approach taken when doing frequency scaling is to expand or shorten
 the signal without affecting the pitch and thereafter re-sampling this expanded or
-shortened version to be the same length as the original.
+shortened version to be the same length as the original. This exansion or
+shortening of the signal is called time scale modification(TSM). Like frequency
+detection, frequency scaling algorithms can also be divided into time and
+frequency domain approaches. Both, however, tend to be implemented using a
+frame-based approach.
 
-\color{red}
-To do:
-\begin{itemize}
-	\item General approach is to expand/extrapolate frequency
-	\item Time domain approaches and frequency domain approaches
-	\item Introduce two approaches Phase Vocoder and pitch synchronous overlap and add
-\end{itemize}
-\color{black}
+Figure \ref{fig:FrameBasedApproach} shows the basic idea behind a frame based
+approach for the TSM process. This signal is stretched to be longer in duration
+but has the same frequency of the original signal. The exact details of how the
+synthesis frames are produces is what differentiates approaches. To acquire a
+frequency scaled signal the signal needs to be re sampled at a new sampling rate
+equal to the inverse of the time scaling factor.
 
-\subsection{Phase Vocoder}
+\begin{figure}[h]
+\centering
+	\includegraphics[height=9.5cm, trim={0cm 2.3cm 0cm 1cm},clip]
+	{FrameBasedTSM}
+	\caption{\footnotemark Frame based approach of many TSM procedures}
+	\label{fig:FrameBasedApproach}
+\end{figure}
+
+\footnotetext{\url{https://en.wikipedia.org/wiki/Audio_time_stretching_and_pitch_scaling#/media/File:GeneralizedPrinciple_TSM.png}
+by Jonathan Driedger}
+
+\subsection{PSOLA}
 
 \color{red}
 To do:
@@ -414,7 +427,7 @@ To do:
 \end{itemize}
 \color{black}
 
-\subsection{PSOLA}
+\subsection{Phase Vocoder}
 
 \color{red}
 To do:
