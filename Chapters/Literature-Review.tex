@@ -336,7 +336,10 @@ The original algorithm for pitch extraction using autocorrelation was first
 described in a paper written in 1967\cite{OriginalAutocorrelation}. A flow
 diagram of the method described in the original paper was produced by a paper
 comparing different pitch detection algorithms\cite{ComparitivePitch}. This flow
-diagram is shown in figure \ref{fig:AutocorrelationFlowDiagram}.
+diagram is shown in figure \ref{fig:AutocorrelationFlowDiagram}. The algorithm in
+the flow diagram differs slightly to the algorithm suggested by the original
+paper. The original algorithm does not have an infinite peak clipper and
+calculates the clipping threshold differently.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{AutocorrelationFlowDiagram}
@@ -344,13 +347,30 @@ diagram is shown in figure \ref{fig:AutocorrelationFlowDiagram}.
 	\label{fig:AutocorrelationFlowDiagram}
 \end{figure}
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe method roughly
-	\item More in depth description comes in implementation section
-\end{itemize}
-\color{black}
+\begin{wrapfigure}{L}{0.35\textwidth}
+	\includegraphics[width=0.35\textwidth]{clip1}
+	\includegraphics[trim={-13mm, 0mm, 0mm, 0mm},clip,width=0.35\textwidth]
+	{clip2}
+	\caption{Center Clipping \cite{OriginalAutocorrelation}}
+	\label{fig:CenterClipper}
+\end{wrapfigure}
+
+The flow diagram algorithm has a pre-processing step that applies a low pass
+filter to the signal and breaks the signal up into 30ms overlapping segments.
+Next, center clipping is applied to a segment of the signal. The thresholds for
+the clipper, $ka_0$, is calculated by first obtaining $IPK_1$ and $IPK_2$, the
+maximum of the absolute value of the first and last third of the signal segment
+respectively. The threshold is set to k times the minimum value of $IPK_1$ and
+$IPK_2$. The value of k is a tuning parameter and a suggested value of 0.67 is
+given. A center clipper is then applied to the signal as shown in figure
+\ref{fig:CenterClipper}. The autocorrelation of this center clipped signal is then
+calculated. The difference in position of the first peak after the center peak is
+calculated. The size of this difference is the period of the signal and the peak
+of the signal, compared with the main peak, provides a confidence metric.
+
+Center clipping removes information on formants but preserves
+periodicity\cite{CenterClippingFormants}. The presence of formants is considered
+the cause for inaccurate pitch detection using autocorrelation methods.
 
 \section{Frequency Scaling}
 
