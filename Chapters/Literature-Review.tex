@@ -451,7 +451,7 @@ initial signal.
 
 \begin{wrapfigure}{L}{0.6\textwidth}
 	\includegraphics[width=0.6\textwidth]{OLAStructureArtifact}
-	\caption{Frame based approach of many TSM procedures}
+	\caption{OLA harmonic structure distortion\cite{TSMBook}}
 	\label{fig:OLAStructureAritfact}
 \end{wrapfigure}
 
@@ -475,6 +475,38 @@ details of the implementation of the simple overlap and add method will be
 discussed in the implementation chapter.
 
 \subsection{Phase Vocoder}
+
+The phase vocoder originates from a different problem but was eventually
+discovered to be very useful for time scale modification. The algorithm eventually
+boils down to a complex approach for creating synthesis frames, but has a more
+interesting story for how it was invented.
+
+The first paper to describe the workings of the phase vocoder was written in 1966
+by Flanagan and Golden\cite{OriginalPhaseVocoder}. They were interested in
+improving the standard channel vocoder at the time to allow for higher fidelity
+sound transmission across telephone lines. This was an important field of research
+at the time because telephone lines were very limited in bandwidth. A prominent
+figure in the investigation of the phase vocoder is Mark Dolson, an Electrical
+Engineer focusing on research in music, speech and perception. He wrote a more
+intuitive tutorial on the phase vocoder and it's various interpretations in
+1986\cite{DolsonTutorial}.
+
+The first interpretation is how the original paper first envisioned it. This is of
+a filter bank each band-passed at different frequencies. Each of these sections
+represent a frequency range. The standard vocoder would only send over the
+information of each band-pass filters's output amplitude. The phase vocoder,
+however, send the phase information too. Figure \ref{fig:PVFLowDiagram} shows how
+this information is extracted coming from a BPF. This allows the receiver to
+calculate the actual frequency in that bandpass filter (not just assuming the
+frequency to be the middle of the BPF) and reproduce a much more accurate signal
+with these two pieces of information.
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{PVFLowDiagram}
+\caption{Flow Diagram showing Frequency and Phase Extraction from
+BPF\cite{OriginalPhaseVocoder}}
+\label{fig:AutocorrelationFlowDiagram}
+\end{figure}
 
 \color{red}
 To do:
