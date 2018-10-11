@@ -422,18 +422,57 @@ by Jonathan Driedger
 \subsection{Simple Overlap and Add}
 
 The most simple approach to time scale modification, is to simply have the
-synthesis frames identical to the analysis frames\cite{TMSBook}. This approach
+synthesis frames identical to the analysis frames\cite{TSMBook}. This approach
 comes with a couple of problems but forms a basis to point out the problems that
 other approaches tries to fix. It points out some subtleties in implementation
 that is not immediately evident in figure \ref{fig:FrameBasedApproach}.
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe method roughly
-	\item More in depth description comes in implementation section
-\end{itemize}
-\color{black}
+The overlap and add method's complications come in at the overlapping areas. The
+approach taken in to use a Hanning window when the analysis frames are created.
+This is to keep a constant magnitude on the overlapping sections. To achieve this
+a hop size of $H_s = N/2$ is required. Equation \ref{eq:HanningWindow} shows the
+definition of the Hanning window and equation \ref{eq:HanningAmplitude} shows the
+property that preserves amplitude. N is defined as the segment size\cite{TSMBook}.
+
+\begin{equation}\label{eq:HanningWindow}
+	w(n) =\frac{1}{2}\Bigg(1-cos\bigg(\frac{2\pi n}{N-1}\bigg)\Bigg)
+\end{equation}
+
+\begin{equation}\label{eq:HanningAmplitude}
+\sum\limits_{a\in\mathbb{Z}} w(n-aH_s)=1 \text{ for all n, when } H_s = N/2
+\end{equation}
+
+The problems with this approach is that it does not preserve periodic structures.
+This is because it does no work to align the two waveforms when the are fading
+into one another. Figure \ref{fig:OLAStructureAritfact} shows this visually for a
+time scale modification which increases the duration of the signal by a factor of
+1.8.  The output signals duration is increased but shows little resemblance to the
+initial signal.
+
+\begin{wrapfigure}{L}{0.6\textwidth}
+	\includegraphics[width=0.6\textwidth]{OLAStructureArtifact}
+	\caption{Frame based approach of many TSM procedures}
+	\label{fig:OLAStructureAritfact}
+\end{wrapfigure}
+
+The problems with this approach is that it does not preserve periodic structures.
+This is because it does no work to align the two waveforms when the are fading
+into one another. Figure \ref{fig:OLAStructureAritfact} shows this visually for a
+time scale modification which increases the duration of the signal by a factor of
+1.8.  The output signals duration is increased but shows little resemblance to the
+initial signal.
+
+This approach is considered unsuitable for signals with harmonic content but works
+surprisingly well with percussive signals\cite{TSMBook}. The reason for
+investigating this approach is to be able to give a basis for understanding other
+approaches and the reasons they implement complex algorithms.
+
+It is recommended to use very small frames sizes, less than 10ms, in order to
+reduce transient doubling. The effect can be easily imagined when considering an
+impulse signal. The simple overlap and add approach will cause some doubling of
+this impulse at the same rate the synthesis frames are constructed. Further
+details of the implementation of the simple overlap and add method will be
+discussed in the implementation chapter.
 
 \subsection{Phase Vocoder}
 
