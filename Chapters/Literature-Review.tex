@@ -397,7 +397,7 @@ shortened version to be the same length as the original. This exansion or
 shortening of the signal is called time scale modification(TSM). Like frequency
 detection, frequency scaling algorithms can also be divided into time and
 frequency domain approaches. Both, however, tend to be implemented using a
-frame-based approach.
+frame-based approach\cite{TSMBook}.
 
 Figure \ref{fig:FrameBasedApproach} shows the basic idea behind a frame based
 approach for the TSM process. This signal is stretched to be longer in duration
@@ -419,7 +419,13 @@ https://en.wikipedia.org/wiki/Audio\_time\_stretching\_and\_pitch\_scaling}
 by Jonathan Driedger
 }
 
-\subsection{PSOLA}
+\subsection{Simple Overlap and Add}
+
+The most simple approach to time scale modification, is to simply have the
+synthesis frames identical to the analysis frames\cite{TMSBook}. This approach
+comes with a couple of problems but forms a basis to point out the problems that
+other approaches tries to fix. It points out some subtleties in implementation
+that is not immediately evident in figure \ref{fig:FrameBasedApproach}.
 
 \color{red}
 To do:
