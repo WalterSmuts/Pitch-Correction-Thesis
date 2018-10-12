@@ -477,9 +477,9 @@ discussed in the implementation chapter.
 \subsection{Phase Vocoder}
 
 The phase vocoder originates from a different problem but was eventually
-discovered to be very useful for time scale modification. The algorithm eventually
-boils down to a complex approach for creating synthesis frames, but has a more
-interesting story for how it was invented.
+discovered to be very useful for time scale modification. The algorithm
+essentially boils down to a complex approach for creating synthesis frames, but
+has a more interesting story for how it was invented.
 
 The first paper to describe the workings of the phase vocoder was written in 1966
 by Flanagan and Golden\cite{OriginalPhaseVocoder}. They were interested in
@@ -492,10 +492,10 @@ intuitive tutorial on the phase vocoder and it's various interpretations in
 1986\cite{DolsonTutorial}.
 
 The first interpretation is how the original paper first envisioned it. This is of
-a filter bank each band-passed at different frequencies. Each of these sections
+a filter bank, each band-passed at different frequencies. Each of these sections
 represent a frequency range. The standard vocoder would only send over the
 information of each band-pass filters's output amplitude. The phase vocoder,
-however, send the phase information too. Figure \ref{fig:PVFLowDiagram} shows how
+however, sends the phase information too. Figure \ref{fig:PVFLowDiagram} shows how
 this information is extracted coming from a BPF. This allows the receiver to
 calculate the actual frequency in that bandpass filter (not just assuming the
 frequency to be the middle of the BPF) and reproduce a much more accurate signal
@@ -507,6 +507,12 @@ with these two pieces of information.
 BPF\cite{OriginalPhaseVocoder}}
 \label{fig:AutocorrelationFlowDiagram}
 \end{figure}
+
+Interesting blocks in figure \ref{fig:AutocorrelationFlowDiagram} are the unwrap
+phase block and the subtract successive values block. These blocks are essentially
+calculating the offset for the middle frequency of the BPF. The ''phase unwrap''
+block just ensures the phase is within the 0 to $2\pi$ domain and the ``subtract
+successive values'' block is where the frequency offset calculation happens.
 
 \color{red}
 To do:
