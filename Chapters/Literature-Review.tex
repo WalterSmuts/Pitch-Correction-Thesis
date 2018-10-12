@@ -502,10 +502,10 @@ frequency to be the middle of the BPF) and reproduce a much more accurate signal
 with these two pieces of information.
 
 \begin{figure}[h]
-\includegraphics[width=\textwidth]{PVFLowDiagram}
-\caption{Flow Diagram showing Frequency and Phase Extraction from
-BPF\cite{OriginalPhaseVocoder}}
-\label{fig:AutocorrelationFlowDiagram}
+	\includegraphics[width=\textwidth]{PVFLowDiagram}
+	\caption{Flow Diagram showing Frequency and Phase Extraction from
+	BPF\cite{OriginalPhaseVocoder}}
+	\label{fig:PVFLowDiagram}
 \end{figure}
 
 Interesting blocks in figure \ref{fig:AutocorrelationFlowDiagram} are the unwrap
@@ -514,10 +514,59 @@ calculating the offset for the middle frequency of the BPF. The ''phase unwrap''
 block just ensures the phase is within the 0 to $2\pi$ domain and the ``subtract
 successive values'' block is where the frequency offset calculation happens.
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe method roughly
-	\item More in depth description comes in implementation section
-\end{itemize}
-\color{black}
+The other interpretation is that of the Short Time Fourier Transform(STFT). The
+STFT is an operation on a signal where successive overlapping windows of the
+signal of interest are Fourier transformed to form frames of the Fourier view that
+change with time. This structure is shown in figure \ref{fig:STFTFrames}. The STFT
+view has been shown to be mathematically equivalent to the filter bank
+interpretation by Pornoff in 1976\cite{STFTPhaseVocoder} and is the approach taken
+today because of the rise of digital computers and the computationally efficient
+FFT algorithm.
+
+\begin{wrapfigure}{L}{0.5\textwidth}
+	\includegraphics[width=0.5\textwidth]{STFTFrames}
+	\caption{STFT frames structure\protect\footnotemark}
+	\label{fig:STFTFrames}
+\end{wrapfigure}
+
+\footnotetext{\url{https://www.researchgate.net/profile/Rajmil_Fischman/publication/231828310/figure/fig6/AS:300578681966597@1448674950601/Fourier-transform-taken-every-eight-samples.png}}
+
+How the phase vocoder actually manages to change the time base still needs to be
+explained. The explanation will use the STFT interpretation but a equally valid
+interpretation in the filter bank view is may help for conceptual clarity. The
+result of the STFT on the signal is a complex valued two dimensional array. This
+array can be sampled at no integer time step values, basically in between frames.
+This new STFT array still needs to be phase corrected. The phase needs to be
+scaled by the same factor that the time has been expanded by\cite{DolsonTutorial}.
+This operation can be done at the same time the interpolation is done. This
+algorithm ensures individual frequencies to be lined up between frames.
+Specifically the algorithm preserves horizontal phase coherence.
+
+The phase vocoder is regarded as a extremely high fidelity tool by which to alter
+the time base of a signal. The artifacts that are introduces have been studied in
+great detail and improvements on the algorithm have been
+proposed\cite{ImprovedPhaseVocoder}. These artifacts are due to spectral leakage
+and the fact that it does not preserve vertical phase coherence. This introduces a
+reverberation effect or loss of presence that is commonly called
+``phasiness''\cite{ImprovedPhaseVocoder}.
+
+There exist many different implementation of the phase vocoder online. Since this
+project looks to implement the pitch corrector in Octave, a open source
+alternative to Matlab, only implementations in Matlab and Octave were inspected.
+Dan Ellis has an implementation availale on his
+website\footnote{\url{http://www.ee.columbia.edu/ln/rosa/matlab/pvoc/}}. This
+implementation is written for Matlab but was found to be compatible with Octave.
+An example of time base modification comes with this implementation.
+Other Matlab implementations
+\footnote{\url{http://sethares.engr.wisc.edu/vocoders/matlabphasevocoder.html}}
+\footnote{\url{http://www.daimi.au.dk/~pmn/sound/pVoc/index.html}}
+were also inspected for clarity and unbiased implementation details.
+
+\vfill
+\begin{figure}[h]
+\centering
+	\includegraphics[width=0.5\textwidth]{FilterVsFourier}
+	\caption{Relation between the Fourier view and filter view of the Phase
+	Vocoder\cite{DolsonTutorial}}
+	\label{fig:FilterVsFourier}
+\end{figure}
