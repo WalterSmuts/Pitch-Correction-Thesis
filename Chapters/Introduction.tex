@@ -37,17 +37,30 @@ the pitch contour does not follow the pitch indicated by the note. The goal of
 pitch correction is to alter the waveform to minimize these regions of intonation
 error while minimally affecting other properties of the waveform.
 
+Pitch correction is difficult because it fundamentally require two non-trivial
+operations. These operations are pitch detection and pitch shifting. What's more
+is that these operations need to be efficiently implemented in order to allow for
+real time, minimal latency throughput for when pitch correction is needed for a
+live performance.
+
+There are many different algorithms for pitch detection, each optimized for
+different situations. In the context of monophonic audio, the pitch detector needs
+to have robust performance in the presence of noise and prominent harmonics. The
+pitch shifter is fundamentally a harder problem to solve. This is explained by
+giving a naive example of how one could consider approaching pitch shifting.  One
+could consider just playing the audio faster or slower, depending on the type of
+shift required. While this does successfully shift the pitch it alters some other
+qualities of the audio as well. The most important of which is duration, which
+also affects the tempo and rhythm. Another quality that this approach would alter
+is the formant structure of the sound. This is related to the harmonics of the
+sound and is explained later in the report. Altering this quality essentially
+comes down to the sound having an unnatural quality to it.
+
 \color{red}
 To Do:
 \begin{itemize}
-	\item Describe why it is difficult
+	\item Motivate why it's needed
 	\begin{itemize}
-		\item Pitch detection is not trivial
-		\item Why you can't just speed up sound and slow it down
-		\item Convey the essence of the problem
-	\end{itemize}
-		\item Motivate why it's needed
-		\begin{itemize}
 		\item One small out of tune note causes a whole new re-recording
 		\item Quick fix after recording
 		\item Live performers can now sing
