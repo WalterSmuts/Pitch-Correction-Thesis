@@ -100,7 +100,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\octavelisting}[1]{
-	\lstinputlisting[language=Octave, caption=#1.m , label={lst:#1}]{octaveSnips/#1.m}
+\begin{center}
+\begin{minipage}[c]{\textwidth}
+\lstinputlisting[language=Octave, caption=#1.m , label={lst:#1}]{octaveSnips/#1.m}
+\end{minipage}
+\end{center}
 }
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
