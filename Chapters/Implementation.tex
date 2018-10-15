@@ -2,37 +2,41 @@
 
 This chapter describes the design, module implemetation and final implemetations
 of the pitch correction system. Since one of the goals of this report is to
-compare the performance of using different modules, the evaluation metrics used
-are described first. Theses metrics are described first to reflect the fact that
-the metrics were designed before the structure and submodules were implemented in
-an effort to minimise biased results. Once these metrics are well understood, the
-desing and implementation of the pitch corrector and it's submodules are
-described.
+compare the performance of the pitch corrector when using different modules, the
+evaluation metrics used are described first. Theses metrics are described first to
+reflect the fact that the metrics were designed before the structure and
+submodules were implemented in an effort to minimise biased results. Once these
+metrics are well understood, the desing and implementation of the pitch corrector
+and its submodules are described.
 
-\section{Evaluation Metrics}
+\section{Evaluation Metric Design}
 
-The goal of the metrics described below is to give a meaningful quantitative way
-of measuring the success of the pitch corrector. It's a way to compare the
-performance of different sub modules and choose the configuration that produces
-the best result. Since the ultimate goal of an audio pitch corrector is to produce
-better sounding music, the most rigorous way to judge the effectiveness of the
-pitch corrector would be to run a psychological survey on which combination of sub
-modules sound best. This is beyond the scope of this project. Instead, some
-simplifications are made and metrics are designed based on the research done on
-music theory. These metrics act as a proxy for the results given by a
-physiological survey and are much easier and cheaper to run. Two aspects of the
-pitch corrector are chosen to be assessed.  The effectiveness of it and the noise
-or distortion of the audio signal introduced by the pitch corrector.
-
-\color{red}
-To Do:
-\begin{itemize}
-	\item Maybe describe the properties metrics should have
-\end{itemize}
-\color{black}
+The goal of using metrics is to give a meaningful quantitative way of measuring
+the success of the pitch corrector. It provides way to compare the performance of
+different sub modules and choose the configuration that produces the best result.
+Since the ultimate goal of an audio pitch corrector is to produce better sounding
+music, the most rigorous way to judge the effectiveness of the pitch corrector
+would be to run a psychological survey on which combination of sub modules sound
+best. This is beyond the scope of this project. Instead, some simplifications are
+made and metrics are designed based on the research done on music theory. These
+metrics act as a proxy for the results given by a physiological survey and are
+much easier and cheaper to run. Two aspects of the pitch corrector are chosen to
+be assessed. The effectiveness of it and the noise or distortion of the audio
+signal introduced by the pitch corrector.
 
 The effectiveness metric is a way of measuring how much the pitch corrector
-corrects the pitch.
+corrects the pitch. This metric will answer the question of how in tune the audio
+is before and after the correction is applied and produce a number indicating the
+improvement. The algorithm to achieve this will make use of the frequency contour
+function. This this is a function of  the fundamental frequency of a signal over
+time. From this frequency contour function, it is possible to find the closest
+correct frequency to this function. The exact details of how the correct
+frequencies are calculated will be explained in the ``Choosing Wanted Frequency''
+section.
+
+Here I reference the listing \ref{lst:getClosestFreqContour}.
+
+\octavelisting{getClosestFreqContour}
 
 \color{red}
 To Do:
