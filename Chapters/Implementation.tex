@@ -1,15 +1,18 @@
 % !tex root = ../Thesis.tex
 
 This chapter describes the design, module implemetation and final implemetations
-of the pitch correction system. Since one of the goals of this report is to
-compare the performance of the pitch corrector when using different modules, the
-evaluation metrics used are described first. Theses metrics are described first to
-reflect the fact that the metrics were designed before the structure and
-submodules were implemented in an effort to minimise biased results. Once these
-metrics are well understood, the desing and implementation of the pitch corrector
-and its submodules are described.
+of the pitch correction system. The implementation code was written in Octave, a
+free and open source alternative to Matlab. Some important, short code-snips are
+shown and explaind to give deeper insight into the details of the implementation.
 
-\section{Evaluation Metric Design}
+Since one of the goals of this report is to compare the performance of the pitch
+corrector when using different modules, the evaluation metrics used are described
+first. Theses metrics are described first to reflect the fact that the metrics
+were designed before the structure and submodules were implemented in an effort to
+minimise biased results. Once these metrics are well understood, the desing and
+implementation of the pitch corrector and its submodules are described.
+
+\section{Evaluation Metrics Design}
 
 The goal of using metrics is to give a meaningful quantitative way of measuring
 the success of the pitch corrector. It provides way to compare the performance of
