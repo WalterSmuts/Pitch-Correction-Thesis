@@ -120,7 +120,15 @@ detector, the level is set to \color{red}XX\color{black}db since both the
 detectors are shown to be robust enough to that level of noise in the next
 section.
 
-\subsection{Module Metrics}
+\subsection{Noise Robustness Metric}
+
+As has already been mentioned, the effectiveness metric relies on the fact that
+the frequency detector is absolutely correct. To give some sense that the
+frequency detector is capable of producing valid results, a metric is designed to
+measure how much noise the frequency detector can deal with before producing
+unacceptable results. Unacceptable results are seen as a mean square error of more
+than $0.59 \times 10^{-6}$, i.e. three orders of magnitude greater than the mean
+squared error of the testing signal in figure \ref{fig:ChirpContour}.
 
 \color{red}
 To Do:
