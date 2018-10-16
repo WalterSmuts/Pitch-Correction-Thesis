@@ -91,18 +91,34 @@ times more in tune. The goal of the pitch corrector is to maximise this metric.
 
 The effectiveness metric unfortunately relies on the frequency detector to be
 absolutely correct. This is because it depends on the results of the frequency
-contour before and after the correction was made. Therefore a separate metric is
-designed to evaluate the frequency detector as an individual module. This is to
-provide some confidence that the frequency detector module does provide a
-reasonably good approximation for the actual frequency contour. This will be
-discussed in the module metric subsection.
+contour before and after the correction was made. The choice to use a clean chirp
+signal for this metric was made to minimise dependence on the frequency detector.
 
-\color{red}
-To Do:
-\begin{itemize}
-	\item Describe noise metric
-\end{itemize}
-\color{black}
+Now that the effectiveness of the pitch corrector can be measured, a distortion
+metric needs to be designed to measure how much the pitch corrector distorts the
+signal unnecessarily. The idea is to have a signal in a state that it shouldn't
+require a correction anymore, i.e. Already pitch corrected, and then apply the
+pitch correction effect and see how much the signal change. The idea is to measure
+the peak of the autocorrelation of a signal after applying the pitch correction
+effect. This is the baseline value. Then apply the pitch correction effect again
+and calculate the maximum value of the cross-correlation between the signal before
+and after the second pitch correction effect has been applied. The ratio between
+the maximum cross-correlation value and the baseline value gives in indication to
+how much the pitch corrector distorts the signal unnecessarily. This ratio is
+called the distortion metric, measured as a percentage. A pitch correction
+algorithm will attempt to produce the highest similarity ratio, 100\% being a
+perfect score. Listing \ref{lst:distortionMetric} shows the distortion metric
+algorithm implemented in Octave.
+
+\octavelisting{distortionMetric}
+
+The testing recording for the distortion metric is chosen to be the same as the
+one for the effectiveness metric except for one thing. The distortion signal needs
+some added white noise to have the distortion in the whole frequency range
+accounted for. To avoid the white noise from interfering with the frequency
+detector, the level is set to \color{red}XX\color{black}db since both the
+detectors are shown to be robust enough to that level of noise in the next
+section.
 
 \subsection{Module Metrics}
 
@@ -110,7 +126,7 @@ To Do:
 To Do:
 \begin{itemize}
 	\item Describe Frequency Detection Metric
-	\item Describe why a frequency scaling metric is also needed
+	\item For a sense of completeness: Frequency scaling metric
 	\item Describe Frequency Scaling metric
 \end{itemize}
 \color{black}
