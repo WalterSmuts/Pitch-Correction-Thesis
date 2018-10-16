@@ -128,16 +128,11 @@ frequency detector is capable of producing valid results, a metric is designed t
 measure how much noise the frequency detector can deal with before producing
 unacceptable results. Unacceptable results are seen as a mean square error of more
 than $0.59 \times 10^{-6}$, i.e. three orders of magnitude greater than the mean
-squared error of the testing signal in figure \ref{fig:ChirpContour}.
-
-\color{red}
-To Do:
-\begin{itemize}
-	\item Describe Frequency Detection Metric
-	\item For a sense of completeness: Frequency scaling metric
-	\item Describe Frequency Scaling metric
-\end{itemize}
-\color{black}
+squared error of the testing signal in figure \ref{fig:ChirpContour}. The testing
+signal will be the  same as the one in figure 3.2 since the exact pitch contour of
+the signal is known. The metric will produce a db level of noise that can be added
+before the unacceptable mean squared error value has been reached. The goal of the
+pitch detector would be to maximise this db level of noise added.
 
 \section{Pitch Correction Design}
 
