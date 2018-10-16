@@ -31,29 +31,70 @@ The effectiveness metric is a way of measuring how much the pitch corrector
 corrects the pitch. This metric will answer the question of how in tune the audio
 is before and after the correction is applied and produce a number indicating the
 improvement. The algorithm to achieve this will make use of the frequency contour
-function. This this is a function of  the fundamental frequency of a signal over
-time. From this frequency contour function, it is possible to find the closest
-correct frequency to this function. The exact details of how the correct
+function. This is a function of the fundamental frequency of a signal over time.
+Exactly how the frequency contour is extracted from the signal will be discussed
+in the ``Pitch Correction Design'' section. From this frequency contour function,
+it is possible to find the closest correct frequency to this function as shown in
+listing \ref{lst:getClosestFreqContour}. The exact details of how the correct
 frequencies are calculated will be explained in the ``Choosing Wanted Frequency''
-section.
-
-Here I reference the listing \ref{lst:getClosestFreqContour}.
+section. Listing \ref{lst:getClosestFreqContour} shows how the closest frequency
+contour is calculated.
 
 \octavelisting{getClosestFreqContour}
 
-\color{red}
-To Do:
-\begin{itemize}
-	\item Describe effectiveness metric further
-\end{itemize}
-\color{black}
+Once the closest frequency contour is found, both are converted into a pitch
+contour by taking the $log_2$ of the functions. This is done because using
+frequency contours would eventually weigh the importance of the higher frequencies
+more than the lower frequencies. A plot of these two contours would allow one to
+see the intonation error as shown in figure \ref{fig:ErrorFunction}.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth,trim={3.5cm 0cm 2.8cm 0cm}]
+	{IntonationError}
+	\caption{Illustration of Intonation Errors in a Pitch Contour Diagram}
+	\label{fig:ErrorFunction}
+\end{figure}
+
+The red regions in figure \ref{fig:ErrorFunction} are intonation errors. To be
+perfectly in tune would be saying there are no red regions, or equivalently, the
+error function is zero everywhere. Therefore the smaller the red regions are the
+better the pitch corrector. A common metric to measure this is the mean square
+error metric and even has a built-in function in octave. Therefore the mean square
+error would indicate how in tune the audio recording is, weighing larger
+intonation errors greater than small intonation errors. This metric is referred to
+as the mean squared pitch error and can fundamentally not be greater than
+$1.736\times10^{-3}$ in the equal tempered tuning system. How this number is
+calculated is shown in equation \ref{eq:MaxIntonationError} and is essentially
+half the distance between two notes in the logarithmic pitch scale.
+
+\begin{equation}\label{eq:MaxIntonationError}
+	\bigg(\frac{1}{2}log_2(\sqrt[12]{2}) - log_2(1)\bigg)^2 \approx
+	1.736\times10^{-3}
+\end{equation}
+
+To formalise this metric algorithm, a standard recording needs to be chosen to
+test with. An exponential chirp signal is chosen, starting at 110Hz, ending at
+440Hz and lasting 5 seconds. Figure \ref{fig:ChirpContour} shows the pitch contour
+of the signal with the closest correct pitch contour. This signal has a mean
+squared pitch error of $0.59 \times 10^{-3}$. The algorithm will measure the
+mean squared pitch error after the pitch correction is applied and return a ratio
+of the original and corrected mean squared pitch error. The idea being that the
+metric essentially says the pitch correction effect causes the recording to be X
+times more in tune. The goal of the pitch corrector is to maximise this metric.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth,trim={3.5cm 0cm 2.8cm 0cm}]
+	{ChirpContour}
+	\caption{Exponential Chirp Contour with Closest Frequency Contour}
+	\label{fig:ChirpContour}
+\end{figure}
 
 The effectiveness metric unfortunately relies on the frequency detector to be
 absolutely correct. This is because it depends on the results of the frequency
-contour before the correction was mad and after the correction was made. Therefore
-a separate metric is designed to evaluate the frequency detector as an individual
-module.  This is to provide some confidence that the frequency detector module
-does provide a reasonably good approximation for the actual frequency contour.
+contour before and after the correction was made. Therefore a separate metric is
+designed to evaluate the frequency detector as an individual module. This is to
+provide some confidence that the frequency detector module does provide a
+reasonably good approximation for the actual frequency contour.
 
 \color{red}
 To Do:
