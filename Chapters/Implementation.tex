@@ -27,6 +27,8 @@ much easier and cheaper to run. Two aspects of the pitch corrector are chosen to
 be assessed. The effectiveness of it and the noise or distortion of the audio
 signal introduced by the pitch corrector.
 
+\subsection{Pitch Corrector Metrics}
+
 The effectiveness metric is a way of measuring how much the pitch corrector
 corrects the pitch. This metric will answer the question of how in tune the audio
 is before and after the correction is applied and produce a number indicating the
@@ -35,12 +37,10 @@ function. This is a function of the fundamental frequency of a signal over time.
 Exactly how the frequency contour is extracted from the signal will be discussed
 in the ``Pitch Correction Design'' section. From this frequency contour function,
 it is possible to find the closest correct frequency to this function as shown in
-listing \ref{lst:getClosestFreqContour}. The exact details of how the correct
-frequencies are calculated will be explained in the ``Choosing Wanted Frequency''
-section. Listing \ref{lst:getClosestFreqContour} shows how the closest frequency
-contour is calculated.
-
-\octavelisting{getClosestFreqContour}
+listing \ref{lst:getClosestFreqContour}.\octavelisting{getClosestFreqContour} The
+exact details of how the correct frequencies are calculated will be explained in
+the ``Choosing Wanted Frequency'' section. Listing \ref{lst:getClosestFreqContour}
+shows how the closest frequency contour is calculated.
 
 Once the closest frequency contour is found, both are converted into a pitch
 contour by taking the $log_2$ of the functions. This is done because using
@@ -94,16 +94,24 @@ absolutely correct. This is because it depends on the results of the frequency
 contour before and after the correction was made. Therefore a separate metric is
 designed to evaluate the frequency detector as an individual module. This is to
 provide some confidence that the frequency detector module does provide a
-reasonably good approximation for the actual frequency contour.
+reasonably good approximation for the actual frequency contour. This will be
+discussed in the module metric subsection.
+
+\color{red}
+To Do:
+\begin{itemize}
+	\item Describe noise metric
+\end{itemize}
+\color{black}
+
+\subsection{Module Metrics}
 
 \color{red}
 To Do:
 \begin{itemize}
 	\item Describe Frequency Detection Metric
-	\item Describe noise metric
 	\item Describe why a frequency scaling metric is also needed
 	\item Describe Frequency Scaling metric
-	\item Summarise all the metrics (in a table?)
 \end{itemize}
 \color{black}
 
