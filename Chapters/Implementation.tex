@@ -273,13 +273,16 @@ implemented in Octave.
 
 \octavelisting{getWantedFreqContour}
 
-This approach produces the desired affect when the same noisy input contour is
-applied. This is shown in figure \ref{fig:NoisyContourFixed}.
+The approach is to set a threshold that needs to be exceeded in order to change
+the pitch. The exact value of the threshold is a ``tuning value'' and would depend
+on the preference of the performer. This ``Schmitt Trigger'' approach produces the
+desired affect when the same noisy input contour is applied. This is shown in
+figure \ref{fig:NoisyContourFixed}.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth,trim={3.5cm 0cm 2.8cm 0cm}]
 	{NoisyContourFixed}
-	\caption{Schmitt Trigger approach result on Noisy Pitch Contour}
+	\caption{Result of Schmitt Trigger approach on Noisy Pitch Contour}
 	\label{fig:NoisyContourFixed}
 \end{figure}
 
