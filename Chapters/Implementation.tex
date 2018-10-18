@@ -138,7 +138,7 @@ pitch detector would be to maximise this db level of noise added.
 
 The design of the pitch corrector is guided by what was found in the literature
 review. Specifically the ``General Pitch Correction Structure'' section was found
-useful. All of pitch correctors investigated had a modular design that included a
+useful. All the pitch correctors investigated had a modular design that included a
 frequency detector and a frequency scaler. Some extra modules, unique to a
 specific pitch corrector, were mostly ignored in the pursuit of simplicity. The
 ``pitch manipulation'' and ``target pitch'' modules represents essentially the
@@ -147,9 +147,7 @@ same function and was named the ``choosing wanted frequency'' module.
 This chapter describes the general structure of the pitch corrector first,
 explaining how the data flows through the pitch corrector. Thereafter the concept
 of segmentation is explained and the exact details of how the pitch contour is
-calculated is laid out. Next the interface between different modules are
-designed, giving a detailed description of what each module should accept and
-produce.
+calculated is laid out.
 
 \subsection{Structure}
 
@@ -181,6 +179,8 @@ the wrapper function \colorbox{backcolour}{\lstinline{getFrequencyContour}}
 exists, providing an intermediate step to the frequency detection module.
 
 \octavelisting{getCorrectedPitch}
+
+\subsection{Segmentation}
 
 Segmentation is a concept required by the structure of the pitch corrector. It
 essentially involves breaking up the input signal into segments, and doing
@@ -235,24 +235,6 @@ is applied in the \colorbox{backcolour}{\lstinline{getFrequencyContour}} functio
 to allow the frequency detector to only consider individual segments, essentially
 allowing for more elegant code. This pre-filter is specific to the frequency
 detector and will be discussed more in the frequency detector section.
-
-\color{red}
-To do:
-\begin{itemize}
-	\item Pitch contour explanation
-	\item Pitch contour listing
-\end{itemize}
-\color{black}
-
-\subsection{Interface}
-
-\color{red}
-To do:
-\begin{itemize}
-	\item Interface philosophy
-	\item Frequency detectors and scalers should be swappable
-\end{itemize}
-\color{black}
 
 \section{Choosing Wanted Frequency}
 
