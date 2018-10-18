@@ -39,7 +39,7 @@ in the ``Pitch Correction Design'' section. From this frequency contour function
 it is possible to find the closest correct frequency to this function as shown in
 listing \ref{lst:getClosestFreqContour}.\octavelisting{getClosestFreqContour} The
 exact details of how the correct frequencies are calculated will be explained in
-the ``Choosing Wanted Frequency'' section. Listing \ref{lst:getClosestFreqContour}
+the ``Target Frequency Contour'' section. Listing \ref{lst:getClosestFreqContour}
 shows how the closest frequency contour is calculated.
 
 Once the closest frequency contour is found, both are converted into a pitch
@@ -142,7 +142,7 @@ useful. All the pitch correctors investigated had a modular design that included
 frequency detector and a frequency scaler. Some extra modules, unique to a
 specific pitch corrector, were mostly ignored in the pursuit of simplicity. The
 ``pitch manipulation'' and ``target pitch'' modules represents essentially the
-same function and was named the ``choosing wanted frequency'' module.
+same function and was named the ``Target Frequency Contour'' module.
 
 This chapter describes the general structure of the pitch corrector first,
 explaining how the data flows through the pitch corrector. Thereafter the concept
@@ -236,29 +236,52 @@ to allow the frequency detector to only consider individual segments, essentiall
 allowing for more elegant code. This pre-filter is specific to the frequency
 detector and will be discussed more in the frequency detector section.
 
-\section{Choosing Wanted Frequency}
+\section{Target Frequency Contour}
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe why choosing wanted frequency is not trivial
-	\item Naive approach
-	\begin{itemize}
-		\item Describe approach
-		\item Show results of approach
-	\end{itemize}
-	\item Schmitt Trigger Approach
-	\begin{itemize}
-		\item Describe approach
-		\item Show results of approach
-	\end{itemize}
-	\item Evaluation Metric
-	\begin{itemize}
-		\item Describe metric
-		\item Show why Schmitt trigger is better
-	\end{itemize}
-\end{itemize}
-\color{black}
+As discussed in the literature review on music theory, the tuning system that will
+be used in this pitch correction system is the equal tempered tuning system based
+on the interval ratio of $\sqrt[12]{2}$. This tuning system works by choosing a
+starting frequency, 440 Hz, and calculating all the other valid frequencies by
+successively applying the chosen interval ratio. All the produced frequencies in
+the tuning system will be relative to 440 Hz. Listing
+\ref{lst:getValidFrequencies} shows how a list of these valid frequencies are
+obtained. The list only extends from 55Hz to 3 520Hz but can easily be extended.
+
+\octavelisting{getValidFrequencies}
+
+Now a target frequency needs to be chosen based on the information provided by the
+frequency contour and the list of available frequencies. The naive approach would
+be to choose the target contour based on the closest pitch contour, as shown in
+listing \ref{lst:getClosestFreqContour}. This produces unwanted rapid transitions
+when a slightly noisy contour transitions between two notes. Figure
+\ref{fig:NoisyContour} shows these unwanted rapid transitions.
+
+\begin{figure}[b]
+	\includegraphics[width=\textwidth,trim={3.5cm 0cm 2.8cm 0cm}]
+	{NoisyContour}
+	\caption{Rapid Closest Pitch Contour transitions of a noisy Pitch Contour}
+	\label{fig:NoisyContour}
+\end{figure}
+
+These noisy transitions are common in the field of electrical engineering. The
+solution, in the context of electrical engineering, is to use a Schmitt Trigger, a
+device that bases it's output, not only on it's current input, but on the previous
+output supplied by the device. This dependence on the previous state of the device
+is a form of hysteresis and is a common non-linear effect. Listing
+\ref{lst:getWantedFreqContour} shows how this Schmitt trigger approach is
+implemented in Octave.
+
+\octavelisting{getWantedFreqContour}
+
+This approach produces the desired affect when the same noisy input contour is
+applied. This is shown in figure \ref{fig:NoisyContourFixed}.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth,trim={3.5cm 0cm 2.8cm 0cm}]
+	{NoisyContourFixed}
+	\caption{Schmitt Trigger approach result on Noisy Pitch Contour}
+	\label{fig:NoisyContourFixed}
+\end{figure}
 
 \section{Frequency Detector}
 
