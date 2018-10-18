@@ -288,13 +288,14 @@ figure \ref{fig:NoisyContourFixed}.
 
 \section{Frequency Detector}
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Explain that this is the basis for the frequency scaler
-	\item Explain other things
-\end{itemize}
-\color{black}
+The frequency detector module is the basis for the frequency shifter and it's
+accuracy is vital for the success of the whole frequency correction system. Each
+implementation has a pre-filter that prepares the signal for the detector.
+Thereafter the specific algorithm for frequency detection is applied to each
+segment as shown in listing \ref{lst:getFrequencyContour}. This is the main
+algorithm discussed in the different approaches. The algorithm decides whether the
+segment is voiced or not, and if not, just returns the value of the previous
+frequency returned.
 
 \subsection{Zero Crossing Method}
 
