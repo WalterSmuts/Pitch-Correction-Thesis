@@ -215,6 +215,27 @@ obtained.
 
 \octavelisting{segment}
 
+From this array of segments, it is possible to create the frequency contour. The
+basic idea is to pass each segment into the frequency detector, producing a list
+of frequencies over time. Unfortunately implementing exactly this would produce
+erratic results. The problem comes in when the specified segment is an unvoiced
+one. This means no instrument is producing sound in that frame and the frequency
+detector will find a frequency based on the background noise. This has been found
+to be very high values and can cause issues in the frequency scaler later on. This
+is unwanted behaviour and a mechanism is built in to allow the frequency detector
+to simply hold the frequency of the previous segment if it regards the segment as
+unvoiced. This produces a frequency contour that's much easier to work with.
+Listing \ref{lst:getFrequencyContour} shows the Octave implementation of how this
+is achieved.
+
+\octavelisting{getFrequencyContour}
+
+It can be seen that a pre-filter is needed for the frequency detector. The filter
+is applied in the \colorbox{backcolour}{\lstinline{getFrequencyContour}} function
+to allow the frequency detector to only consider individual segments, essentially
+allowing for more elegant code. This pre-filter is specific to the frequency
+detector and will be discussed more in the frequency detector section.
+
 \color{red}
 To do:
 \begin{itemize}
