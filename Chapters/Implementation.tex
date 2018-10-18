@@ -172,7 +172,7 @@ produces tuned audio.
 The Octave code of the structure seen in figure
 \ref{fig:PitchCorrectorFlowDiagram} can be seen in listing
 \ref{lst:getCorrectedPitch}. From this code, it can be seen that some extra
-information, other than that proviced by the arrows, are needed. This information
+information, other than that provided by the arrows, are needed. This information
 includes the sampling frequency, the segment size and the hop size and is needed
 by each module to function correctly. The sampling frequency is self explanatory
 but segment size and hop size relates to the concept of segmentation, not yet
@@ -182,29 +182,44 @@ exists, providing an intermediate step to the frequency detection module.
 
 \octavelisting{getCorrectedPitch}
 
+Segmentation is a concept required by the structure of the pitch corrector. It
+essentially involves breaking up the input signal into segments, and doing
+computations on these individual segments. The frequency detector and frequency
+scaler performs it's operation in the context of a single segment. The idea of
+segmentation can be seen in figure \ref{fig:Segmentation}. The figure shows a
+signal being segmented into chunks of 2 048 samples and a 50\% overlap. This
+corresponds to a segment duration of around 46ms, assuming a sampling rate of 44
+100 samples per second.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth, trim={2.5cm 0cm 2.5cm 0cm},clip]
+{SegmentationVisualization}
+\caption{Segmentation Visualization}
+\label{fig:Segmentation}
+\end{figure}
+
+There is an obvious trade-off when considering the overlapping percentage. The
+more the signal overlaps, the more computational power is needed but it does
+usually provide more gradual changes when stitching segments back together. For
+this implementation, the overlap percentage was chosen at whatever was most
+natural for the pitch shifter(50\% for simple overlap and add and 75\% for the
+phase vocoder). A less obvious trade-off is that of segment size. The larger the
+segment size, the more latency the system will have but will increase the
+fundamental resolution in frequency for the frequency detection and frequency
+scaling modules.  Practically the pitch detectors needs al least 2 periods to
+calculate the frequency properly, meaning the segment size needs to be at least 1
+764 samples long. This corresponds to two periods of a 50Hz signal at 44 100
+samples per second. Listing \ref{lst:segment} shows how these segments are
+obtained.
+
+\octavelisting{segment}
+
 \color{red}
 To do:
 \begin{itemize}
-       \item Segmentation!!!
-       \begin{itemize}
-               \item Describe what segmentation is and why it is necessary
-               \item Describe stages
-               \begin{itemize}
-                       \item Split (overlap)
-                       \item Do computation
-                       \item Stitch (overlap and add)
-               \end{itemize}
-               \item Reason to overlap and size of overlapping (TRADE-OFF)
-               \item Window size (TRADE-OFF)
-               \begin{itemize}
-                       \item Small means low resolution
-                       \item Large means latency
-                       \item Small generally means more computation
-               \end{itemize}
-               \item Properties to preserve relevant to real time auto tuning
-       \end{itemize}
-       \item Flow diagram
-       \item Actual code snips from Octave source code
+	\item Pitch contour explanation
+	\item Pitch contour listing
 \end{itemize}
 \color{black}
 
