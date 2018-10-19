@@ -310,16 +310,33 @@ performance of the pitch corrector.
 
 \subsection{Zero Crossing Method}
 
+Before the algorithm for the zero crossing method receives the segments, a
+pre-processing filter needs to be applied to prepare the frames for the zero
+crossing detector. LPC was considered but was found to be quite complicated and a
+simpler option suggested by a website\footnotemark was implemented. This involved
+a low pass filter, to filter out all the harmonic content and noise that might
+cause zero crossings. An 8th order Butterworth filter at 250 Hz was needed to
+produce results that contained no errors. The algorithm applied to each frame is shown in listing
+\ref{lst:getFrequencyZCM}.
+
+\footnotetext
+{\url{https://sound.eti.pg.gda.pl/student/eim/synteza/leszczyna/index_ang.htm}}
+
 \octavelisting{getFrequencyZCM}
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe method in more detail than lit review
-	\item Show snips of code and graphically what it's doing
-	\item Show performance metrics
-\end{itemize}
-\color{black}
+The first block calls the voicing check function and only if it return true,
+continues the algorithm. This is an attempt to reduce unnecessary computation.
+Next, the algorithm uses the built-in Octave function to find the location of the
+zero-crossings. The next two blocks relates to a quirk of the zero crossing method
+illustrated in figure \ref{fig:ZeroCrossingRaised}. This figure shows what
+happens when the segment under inspection has a slight DC-value.
+
+\begin{figure}[h]
+	\label{fig:ZeroCrossingRaised}
+	\includegraphics[width=\textwidth,trim={3cm 0mm 3cm 0mm},clip]
+	{ZeroCrossingRaised}
+	\caption{Zero crossing detector on 440 Hz sinusoidal signal}
+\end{figure}
 
 \subsection{Autocorrelation Method}
 

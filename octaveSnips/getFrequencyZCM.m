@@ -1,6 +1,6 @@
 function freq = getFrequencyZCM(signal, prevFreq,sf)
 	% Somewhat a voice presence check
-	if (max(signal) < 0.02);
+	if !isVoiced(signal);
 		freq = prevFreq;
 		return;
 	endif
