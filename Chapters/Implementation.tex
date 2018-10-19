@@ -292,12 +292,25 @@ The frequency detector module is the basis for the frequency shifter and it's
 accuracy is vital for the success of the whole frequency correction system. Each
 implementation has a pre-filter that prepares the signal for the detector.
 Thereafter the specific algorithm for frequency detection is applied to each
-segment as shown in listing \ref{lst:getFrequencyContour}. This is the main
-algorithm discussed in the different approaches. The algorithm decides whether the
-segment is voiced or not, and if not, just returns the value of the previous
-frequency returned.
+segment as shown in listing \ref{lst:getFrequencyContour}. The first thing this
+algorithm does is determine if the segment is voiced or not. The reason the
+presence check is done inside the frequency detector function is because it was
+initially thought each detection approach could yield a different approach to a
+presence check. This was eventually not investigated further and a single
+presence check was used for both algorithms. The presence checking algorithm is
+shown in listing \ref{lst:isVoiced}.
+
+\octavelisting{isVoiced}
+
+For now, all the algorithm does is check if the amplitude of the incoming signal
+reaches a threshold. This threshold was found empirically and solved the presence
+check for all my test recordings. More sophisticated algorithms exist but efforts
+were focussed on other modules since this was not deemed the module limiting
+performance of the pitch corrector.
 
 \subsection{Zero Crossing Method}
+
+\octavelisting{getFrequencyZCM}
 
 \color{red}
 To do:
@@ -309,6 +322,8 @@ To do:
 \color{black}
 
 \subsection{Autocorrelation Method}
+
+\octavelisting{getFrequencyAutoCorr}
 
 \color{red}
 To do:
