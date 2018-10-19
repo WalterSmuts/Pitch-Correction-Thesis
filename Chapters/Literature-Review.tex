@@ -272,7 +272,7 @@ The major modules will be investigated further.
 
 Frequency detection is an essential step in the pitch corrector system. Before the
 pitch can be corrected, it must be known what the current pitch value is. In the
-field of study, the term pitch detection and frequency detection is
+field of study, the term pitch detection and frequency detection are
 interchangeable terms. Both refer to finding the fundamental frequency of a
 periodic or semi-periodic signal\cite{ComparitivePitch}. There are several methods
 used depending on the application, but all fall under two categories: Time domain
@@ -291,8 +291,8 @@ reduce spectral smearing\cite{Windowing}.
 The methods chosen to be investigated is the zero-crossing method and the
 autocorrelation method. These were chosen because of their simplicity and
 surprisingly good performance\cite{ComparitivePitch}. Frequency domain methods
-were planned to be investigated and implemented but by the end was not time
-permitting.
+were planned to be investigated and implemented but was left out due to a lack of
+time.
 
 \subsection{Zero Crossing Method}
 
@@ -533,7 +533,7 @@ FFT algorithm.
 
 How the phase vocoder actually manages to change the time base still needs to be
 explained. The explanation will use the STFT interpretation but a equally valid
-interpretation in the filter bank view is may help for conceptual clarity. The
+interpretation in the filter bank view may help for conceptual clarity. The
 result of the STFT on the signal is a complex valued two dimensional array. This
 array can be sampled at no integer time step values, basically in between frames.
 This new STFT array still needs to be phase corrected. The phase needs to be
