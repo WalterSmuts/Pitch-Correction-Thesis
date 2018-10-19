@@ -338,9 +338,27 @@ happens when the segment under inspection has a slight DC-value.
 	\caption{Zero crossing detector on 440 Hz sinusoidal signal}
 \end{figure}
 
-\subsection{Autocorrelation Method}
+The frequency of the signal in the graph is a 440 Hz sinusoid. The formula in
+equation \ref{eq:PeriodVsFreq1} requires $\Delta s$ in order to to calculate the
+fundamental frequency of the signal. Since the length of $\Delta s$ changes for
+each successive zero crossing, using the naive implementation of the formula would
+estimate frequencies of: 521 Hz 381 Hz. Therefore some averaging needs to be done.
+Averaging two consecutive $\Delta s$ values would produce the correct result as
+shown in figure \ref{fig:ZeroCrossingRaised}. More generally, averaging an even
+amount of $\Delta s$ values would produce much more accurate results. This
+involves ensuring the considered length of zero crossings is more than three and
+odd valued and is exactly what the Octave implementation does.
 
-\octavelisting{getFrequencyAutoCorr}
+\begin{equation}\label{eq:PeriodVsFreq1}
+	F_0 = \frac{1}{p} = \frac{1}{2\Delta s}
+\end{equation}
+
+The last second to last block of code gets the length of the region from the first
+and last zero crossing considered. This is going to be the region being averaged.
+The last block calculates the frequency from the information of the amount of
+regions considered and the length of those regions.
+
+\subsection{Autocorrelation Method}
 
 \color{red}
 To do:
@@ -350,6 +368,8 @@ To do:
 	\item Show performance metrics
 \end{itemize}
 \color{black}
+
+\octavelisting{getFrequencyAutoCorr}
 
 \section{Frequency Scaler}
 
