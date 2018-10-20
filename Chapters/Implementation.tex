@@ -394,13 +394,25 @@ the signal.
 
 \octavelisting{getFrequencyAutoCorr}
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Show example signal with and without clipping
-	\item Show autocorrelation with and without clipping
-\end{itemize}
-\color{black}
+To demonstrate the function of the center clipping, figure \ref{fig:ClipVsNoDemo}
+shows the result of the same segment with and without the clipping applied. The
+segment is of a vocal recording containing all the formants and harmonics a signal
+is expected to contain.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth,trim={3cm 0mm 2.5cm 0mm},clip]
+	{ClipVsNoDemo}
+	\label{fig:ClipVsNoDemo}
+	\caption{Zero crossing detector on 440 Hz sinusoidal signal}
+\end{figure}
+
+Below is the result of the second half of the autocorrelation function of the
+clipped and non-clipped signal. The distance from the value at zero delay and the
+first peak is the period of the signal. The figure makes is obvious that center
+clipping produces a less ambiguous period. Further testing could to be done to
+calculate the ideal values for the clipping threshold and peak finding threshold.
+The chosen values of 0.6 and 0.8 respectively, was considered to perform good
+enough and time was spent working on other parts of the pitch correction system.
 
 \section{Frequency Scaler}
 
