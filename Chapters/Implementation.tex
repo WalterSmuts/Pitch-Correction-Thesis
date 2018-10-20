@@ -471,6 +471,35 @@ semitone, making this pitch shifter not nearly good enough.
 
 \subsection{Phase Vocoder}
 
+The Phase vocoder was the most interesting algorithm investigated. The details of
+how the approach works has been explained in the literature review. The
+implantation Dan Ellis provides on his
+website\footnote{\url{http://www.ee.columbia.edu/ln/rosa/matlab/pvoc/}} was used.
+Other implementations were also inspected, but the one provided by Professor Ellis
+was the cleanest, simplest approach. The implementation itself will not be
+explained but rather the interface provided will be explained. It will be viewed
+as a library, equivalent to the other Octave functions provided built in. The
+Octave code needed to implement arbitrary pitch shifting, using this library, will
+be explained.
+
+The phase vocoder implementation consists of three functions:
+
+\begin{itemize}
+\item\colorbox{backcolour}{\lstinline{stft(x, f, w, h, sr)}}\newline
+A function that receives a signal x, does f-point FFT's on w-sized windows spaced
+h samples apart and returns a form of STFT that the rest of the library knows how
+to deal with.
+\item\colorbox{backcolour}{\lstinline{pvsample(b, t, hop)}}\newline
+A function that receives a STFT array b, a new time-base t, and a hop size h,
+and returns a STFT array, re-sampled at the new time-base according to the phase
+vocoder algorithm.
+\item\colorbox{backcolour}{\lstinline{istft(d, ftsize, w, h)}}\newline
+A function that receives a STFT array d, with a FFT size specified by ftsize,
+window size specified by w, hops size specified by h and returns a signal created
+by an overlap and add method from the IFFT's of the STFT frames.
+\end{itemize}
+
+
 \begin{figure}[h]
 	\includegraphics[width=\textwidth,trim={2.5cm 0mm 2.5cm 0mm},clip]
 	{TestScalingPV}
