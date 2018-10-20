@@ -416,15 +416,30 @@ enough and time was spent working on other parts of the pitch correction system.
 
 \section{Frequency Scaler}
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Explain time vs frequency approaches
-	\item Explain other things
-\end{itemize}
-\color{black}
+The frequency scaler was considered the most difficult module in the pitch
+correction system. In-depth understanding needed to be acquired before anything
+worked at all. A test was devised to see if the pitch shifter improved. The
+test was to scale a 440 Hz sinusoid sound wave, five seconds in duration, up and
+down by 20\% according sin function of a two and a half second period. The quality
+of this scaled recording function was listened to and changes were made depending
+on intuition gained from the listening experience. This evaluation method can not
+be considered a rigorous metric but was found to be very useful in the development
+of the algorithms.
 
-\subsection{Phase Vocoder}
+\subsection{Simple Overlap and Add}
+
+This method was understood first but actually implemented after the phase vocoder.
+This was because it was not regarded as a serious approach. This intuition was
+correct, as will be shown. The merit for including this method is to illustrate
+it's shortcomings and to be a precursor for the synchronized overlap and add
+method used by most pitch shifters. Unfortunately the synchronized overlap and add
+approach was not implemented due to time constraints. This method feels a bit like
+a useless appendage but should still be considered a stepping stone and reference
+point to proper methods.
+
+The implementation of this method is cumbersome and a straight forward
+implementation of what is described in the literature review. For this reason the
+implementation code for this method is added in Appendix C.
 
 \color{red}
 To do:
@@ -435,7 +450,7 @@ To do:
 \end{itemize}
 \color{black}
 
-\subsection{Simple Overlap and Add}
+\subsection{Phase Vocoder}
 
 \color{red}
 To do:
