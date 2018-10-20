@@ -419,8 +419,8 @@ enough and time was spent working on other parts of the pitch correction system.
 The frequency scaler was considered the most difficult module in the pitch
 correction system. In-depth understanding needed to be acquired before anything
 worked at all. A test was devised to see if the pitch shifter improved. The test
-was to scale a 440 Hz sinusoid sound wave, five seconds in duration, up and down
-by 20\% according sin function of a two and a half second period. The quality of
+was to scale a 220 Hz sinusoid sound wave, five seconds in duration, up and down
+by 50\% according sin function of a two and a half second period. The quality of
 this scaled 440 Hz pitch was listened to and changes were made depending on
 intuition gained from the listening experience. This evaluation method can not be
 considered a rigorous metric but was found to be very useful in the development of
@@ -439,16 +439,35 @@ stepping stone and reference point to proper methods.
 
 The Octave code of this method is cumbersome and a straight forward implementation
 of what is described in the literature review. For this reason the implementation
-code for this method is added in Appendix C.
+code for this method is added in Appendix C. Instead of discussing the Octave
+code, the results of the frequency scaler will be inspected.
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe method in more detail than lit review
-	\item Show snips of code and graphically what it's doing
-	\item Show performance metrics
-\end{itemize}
-\color{black}
+\begin{figure}[h]
+	\includegraphics[width=\textwidth,trim={2.5cm 0mm 2.5cm 0mm},clip]
+	{TestScalingOLA}
+	\caption{Scaling Test of Simple Overlap and Add Algorithm}
+	\label{fig:ScalingTestSOLA}
+\end{figure}
+
+From figure \ref{fig:ScalingTestSOLA} it can be seen that somewhat pitch shifting
+is achieved. This is not nearly good enough for a high-fidelity application, but
+is a step in the right direction. Some aspects to point out on figure
+\ref{fig:ScalingTestSOLA} is that the algorithm seems to have trouble with scaling
+to a higher frequency. The achieved contour follows the wanted contour much closer
+on the downward section. What's happening here is slightly misleading, or rather,
+not the full story. The frequency scaler seems to achieve scaling in discrete
+steps. These are log frequency steps, or alternatively, pitch steps. Figure
+\ref{fig:ScalingTestSOLAPitch} shows the same plot, except with pitch on the
+y-axis. Here it can be seen that the pitch shifting algorithm has a resolution of
+3 semitones. The goal of the pitch shifter is to shift pitch within a
+semitone, making this pitch shifter not nearly good enough.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth,trim={2.5cm 0mm 2.5cm 0mm},clip]
+	{TestScalingOLAPitch}
+	\caption{Pitch graph of figure \ref{fig:ScalingTestSOLA}}
+	\label{fig:ScalingTestSOLAPitch}
+\end{figure}
 
 \subsection{Phase Vocoder}
 
