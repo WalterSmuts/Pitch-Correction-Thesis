@@ -364,16 +364,43 @@ calculated.
 
 \subsection{Autocorrelation Method}
 
+As with the zero crossing method, a pre-possessing LPF is applied. It was found
+that this filter did not need as strict parameters and was set to 900 Hz. This was
+on the recommendation in the paper comparing pitch detection
+methods\cite{ComparitivePitch}. This was found to be sufficient for all testing
+recordings.
+
+Before the auto-correlation method could be implemented, a center clipping
+function needed to be written. This center-clipping is needed to remove harmonic
+content and formants but retain the fundamental periodicity of the signal. Listing
+\ref{lst:clip} shows the implementation of this clipping function. This is a
+straight forward implementation and the code is considered self explanatory.
+
+\octavelisting{clip}
+
+Now that a center-clipping function has been written, the autocorrelation approach
+to frequency detection is implemented. The Octave code is shown in listing
+\ref{lst:getFrequencyAutoCorr}. A voice checking, as in the zero-crossing method,
+is done first. Thereafter the signal needs to be center-clipped. The literature
+review suggested taking the maximum value of the first and third part of the
+segment and scaling that by 0.67. The reason for only considering the first and
+last third is not fully understood and the decision was made to consider the whole
+segment. Now the clipped signal is autocorrelated. The peaks of this
+auto-correlated signal needs to be found using a built-in Octave function. The
+\colorbox{backcolour}{\lstinline{findpeaks()}} function requires the input to be
+greater than 0. All the peaks int the second half, greater than 80\% of the center
+peak, are returned.  The distance to the second peak is considered the period of
+the signal.
+
+\octavelisting{getFrequencyAutoCorr}
+
 \color{red}
 To do:
 \begin{itemize}
-	\item Describe method in more detail than lit review
-	\item Show snips of code and graphically what it's doing
-	\item Show performance metrics
+	\item Show example signal with and without clipping
+	\item Show autocorrelation with and without clipping
 \end{itemize}
 \color{black}
-
-\octavelisting{getFrequencyAutoCorr}
 
 \section{Frequency Scaler}
 

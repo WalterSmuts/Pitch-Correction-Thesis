@@ -1,4 +1,10 @@
 function freq = getFrequencyAutoCorr(signal, prevFreq,sf)
+	% Somewhat a voice presence check
+	if !isVoiced(signal);
+		freq = prevFreq;
+		return;
+	endif
+
 	% Center Clip Signal
 	signal = clip(signal,0.6*max(abs(signal)));
 
