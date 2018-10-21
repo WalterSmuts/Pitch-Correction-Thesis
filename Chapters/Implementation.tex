@@ -515,12 +515,36 @@ phase vocoder.
 The timebase, however, does not need to be spaced equally. It can be spaced at
 arbitrary intervals. The re-sampling operation can also be done arbitrarily using
 spline interpolation. This theoretically allows one to scale the frequency by an
-arbitrary time dependent factor. This is exactly what we require for pitch
-correction. The function indication the time dependent scaling factor is referred
+arbitrary time dependent factor. This is exactly what is required for pitch
+correction. The function indicating the time dependent scaling factor is referred
 to as the scaling ratio contour. This algorithm is shown in listing
 \ref{lst:getScaledSamplePV}
 
 \octavelisting{getScaledSamplePV}
+
+All the steps have already been explained and should be straight forward. The only
+step that needs further elaboration is the
+\colorbox{backcolour}{\lstinline{getSamplePoints}} function. This is a custom
+function and is essentially a mapping of the scaling ratio contour to sample
+points for the STFT array and the spline interpolation function. The Octave code
+is shown in listing \ref{lst:getSamplePoints}.
+
+\octavelisting{getSamplePoints}
+
+The code in listing \ref{lst:getSamplePoints} essentially packs the STFT sample
+points at intervals equal to the inverse of the shifting ratio required at that
+point, until the next integer value is reached. This creates a density of sampling
+points, equal to the inverse of the shifting ratio, for the STFT frames. While
+this STFT sampling points are being obtained, the corresponding re-sapling points
+for the spline re-sampler are obtained. This is done by considering every 4th STFT
+frame, assuming an overlap of 75\%, and creating corresponding sampling points
+spaced at intervals proportional to the scaling contour.
+
+This approach was written as a quick attempt to doing arbitrary frequency
+scaling. Once it was written it wasn't even properly tested for a couple of weeks
+because it was thought to be too inelegant. When tested, it produced surprisingly
+good results. These results can be seen in a scaling test shown in
+\ref{fig:ScalingTestPV}.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth,trim={2.5cm 0mm 2.5cm 0mm},clip]
@@ -529,32 +553,25 @@ to as the scaling ratio contour. This algorithm is shown in listing
 	\label{fig:ScalingTestPV}
 \end{figure}
 
+It not only outperformed the simple overlap and add method but when the pitch
+shifting resolution was inspected it seemed to produce results capable of use
+pitch correction. This is shown in figure \ref{fig:ScalingTestSOLAPVPitch}. The
+slight phase lead in both figures are misleading. The reason they arise is
+because the vocoder considers the next frame when doing the scaling. In reality
+the audio will be delayed by a frame and the phase lead will be non-existent. The
+effect was left in the graphs because it was difficult to distinguish the two
+contours when they lined up almost perfectly.
+
+The mapping function is still considered a hack and not the correct
+implementation. But since it produced results capable of doing pitch correction,
+it was left as is and not investigated further.
+
 \begin{figure}[h]
 	\includegraphics[width=\textwidth,trim={2.5cm 0mm 2.5cm 0mm},clip]
 	{TestScalingPVPitch}
 	\caption{Pitch Resolution of Phase Vocoder}
 	\label{fig:ScalingTestSOLAPVPitch}
 \end{figure}
-
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe method in more detail than lit review
-	\item Show snips of code and graphically what it's doing
-	\item Show performance metrics
-\end{itemize}
-\color{black}
-
-\section{Pitch Corrector}
-
-\color{red}
-To do:
-\begin{itemize}
-	\item Describe which modules were added put together
-	\item Describe why each module was chosen
-	\item Describe each system and show its performance
-\end{itemize}
-\color{black}
 
 \section{Concept Expansion}
 
