@@ -11,6 +11,27 @@ final real world demonstaration.
 
 \section{Frequency Detector}
 
+The noise robustness metric for each of the two pitch detection algorithms were
+run. This checks how much noise can be introduced into a signal with a known pitch
+contour before the pitch detector produces unacceptable results. Unacceptable is
+seen as having a mean squared pitch error of more than $0.59\times10^-6$. The
+metric will be quoted in decibels of noise.
+
+Figure \ref{fig:NoiseRobustnessZCM} shows a graph plotting the square pitch error
+of the Zero Crossing error as a function of additive noise in decibel. The square
+pitch error is plotted using $log_{10}$ scaling to make the graph more readable.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth,trim={2.5cm 0mm 2.5cm 0mm},clip]
+	{NoiseRobustnessZCM}
+	\caption{Zero Crossing Method Noise Robustness}
+	\label{fig:NoiseRobustnessZCM}
+\end{figure}
+
+Since the input signal has an amplitude of 0 decibel, the signal to noise ratio
+can easily be determined. The graph shows that the zero crossing method requires a
+SNR of around 4.5db in order to function at a acceptable level.
+
 \color{red}
 To do:
 \begin{itemize}
