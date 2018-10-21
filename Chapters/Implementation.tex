@@ -482,8 +482,9 @@ as a library, equivalent to the other Octave functions provided built in. The
 Octave code needed to implement arbitrary pitch shifting, using this library, will
 be explained.
 
+\vspace{1cm}
 The phase vocoder implementation consists of three functions:
-
+\vspace{-1cm}
 \begin{itemize}
 \item\colorbox{backcolour}{\lstinline{stft(x, f, w, h, sr)}}\newline
 A function that receives a signal x, does f-point FFT's on w-sized windows spaced
@@ -499,6 +500,26 @@ window size specified by w, hops size specified by h and returns a signal create
 by an overlap and add method from the IFFT's of the STFT frames.
 \end{itemize}
 
+The website suggests values for the window size and fft size of 2 048 and 512
+respectively and that the functions be executed in the order shown above. The only
+input to really consider is the new timebase t. The normal timebase is the
+integer values, starting from zero and having a length equal to the amount of STFT
+frames. Providing an array t, of 0.5 unit increments and executing the code is
+equivalent to stretching the input recoding by a factor of two. Re-sampling this
+recording at half the original sampling rate will cause all the frequencies to be
+scaled by a factor of two and now the sample will have a length equal to the
+original. This is how pitch shifting by a constant factor is achieved using the
+phase vocoder.
+
+The timebase, however, does not need to be spaced equally. It can be spaced at
+arbitrary intervals. The re-sampling operation can also be done arbitrarily using
+spline interpolation. This theoretically allows one to scale the frequency by an
+arbitrary time dependent factor. This is exactly what we require for pitch
+correction. The function indication the time dependent scaling factor is referred
+to as the scaling ratio contour. This algorithm is shown in listing
+\ref{lst:getScaledSamplePV}
+
+\octavelisting{getScaledSamplePV}
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth,trim={2.5cm 0mm 2.5cm 0mm},clip]
