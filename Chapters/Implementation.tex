@@ -74,7 +74,7 @@ half the distance between two notes in the logarithmic pitch scale.
 
 To formalise this metric algorithm, a standard recording needs to be chosen to
 test with. An exponential chirp signal is chosen, starting at 110Hz, ending at
-440Hz and lasting 5 seconds. Figure \ref{fig:ChirpContour} shows the pitch contour
+220Hz and lasting 5 seconds. Figure \ref{fig:ChirpContour} shows the pitch contour
 of the signal with the closest correct pitch contour. This signal has a mean
 squared pitch error of $0.59 \times 10^{-3}$. The algorithm will measure the
 mean squared pitch error after the pitch correction is applied and return a ratio
@@ -116,9 +116,8 @@ The testing recording for the distortion metric is chosen to be the same as the
 one for the effectiveness metric except for one thing. The distortion signal needs
 some added white noise to have the distortion in the whole frequency range
 accounted for. To avoid the white noise from interfering with the frequency
-detector, the level is set to \color{red}XX\color{black}db since both the
-detectors are shown to be robust enough to that level of noise in the next
-section.
+detector, the level is set to -20db since both the detectors are shown to be
+robust enough to that level of noise in the results chapter.
 
 \subsection{Noise Robustness Metric}
 
