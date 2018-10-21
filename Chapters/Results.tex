@@ -49,10 +49,32 @@ spent inspecting the autocorrelation code and that mistakes are highly likely.
 
 \section{Pitch Corrector}
 
+Because of time constraints, only the combination of the zero-crossing method and
+the phase vocoder, as sub-modules, will be tested. This combination does also seem
+like the most likely combination to produce the best results. This is because of
+the results seen when testing the sub-modules individually and during the
+development of the modules.
+
+The first metric to test is the effectiveness metric. The goal is to produce a
+number to say: ``The pitch corrector improves the pitch accuracy by X times''.
+Figure \ref{fig:EffectivenessPVZCM} shows the pitch contour plot of the test
+defined in the implementation chapter.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth,trim={2.7cm 0mm 2.7cm 0mm},clip]
+	{EffectivenessPVZCM}
+	\caption{Autocorrelation Method Noise Robustness}
+	\label{fig:EffectivenessPVZCM}
+\end{figure}
+
+The achieved pitch contour very narrowly follows the wanted pitch contour. The
+mean squared pitch error before the correction was $0.59 \times 10^{-3}$, and
+after the correction, $0.13 \times 10^{-3}$. This results in a pitch accuracy
+improvement factor of 4.38.
+
 \color{red}
 To do:
 \begin{itemize}
-	\item Graph results and tabulate metrics
-	\item Discuss metrics and make a conclusion on the best
+	\item Include distortion metric
 \end{itemize}
 \color{black}
