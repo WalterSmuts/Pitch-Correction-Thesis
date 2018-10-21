@@ -17,9 +17,10 @@ contour before the pitch detector produces unacceptable results. Unacceptable is
 seen as having a mean squared pitch error of more than $0.59\times10^-6$. The
 metric will be quoted in decibels of noise.
 
-Figure \ref{fig:NoiseRobustnessZCM} shows a graph plotting the square pitch error
-of the Zero Crossing error as a function of additive noise in decibel. The square
-pitch error is plotted using $log_{10}$ scaling to make the graph more readable.
+Figure \ref{fig:NoiseRobustnessZCM} shows a graph plotting the square pitch error,
+of the Zero Crossing frequency detector, as a function of additive noise in
+decibels. The square pitch error is plotted using $log_{10}$ scaling to make the
+graph more readable.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth,trim={2.5cm 0mm 2.5cm 0mm},clip]
@@ -30,15 +31,21 @@ pitch error is plotted using $log_{10}$ scaling to make the graph more readable.
 
 Since the input signal has an amplitude of 0 decibel, the signal to noise ratio
 can easily be determined. The graph shows that the zero crossing method requires a
-SNR of around 4.5db in order to function at a acceptable level.
+SNR of 4.5db in order to function at a acceptable level.
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Graph results and tabulate metrics
-	\item Discuss metrics and make a conclusion on the best
-\end{itemize}
-\color{black}
+Figure \ref{fig:NoiseRobustnessAutoCorr} shows a similar graph but of the
+autocorrelation method. The SNR required for acceptable performance is 17.8db.
+This is worse than the expected and indicates an error in implementation. It is
+postulated that this is a resolution error and oversampling of the signal before
+autocorrelation is required. It is also worth mentioning that very little time was
+spent inspecting the autocorrelation code and that mistakes are highly likely.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth,trim={2.5cm 0mm 2.5cm 0mm},clip]
+	{NoiseRobustnessAutoCorr}
+	\caption{Autocorrelation Method Noise Robustness}
+	\label{fig:NoiseRobustnessAutoCorr}
+\end{figure}
 
 \section{Pitch Corrector}
 
