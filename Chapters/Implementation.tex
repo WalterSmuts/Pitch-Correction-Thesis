@@ -574,12 +574,20 @@ it was left as is and not investigated further.
 
 \section{Concept Expansion}
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Explain that more cool stuff were found
-	\item Post Correction
-	\item Harmonization
-	\item Pitch Scaling by a Constant Factor
-\end{itemize}
-\color{black}
+During development, some ideas arose of other, similar, effects that can be
+applied using the tools developed. Some quick implementations of these tools were
+written to see if they were fruitful. The ones that worked will be quickly
+described in this section.
+
+One, obvious, wanted effect would be to allow a user to specify the wanted pitch
+contour during the mixing stage of a song. This would allow the singer to have a
+recording of an arbitrary pitch contour and this contour can be shaped into and
+arbitrary different contour, perhaps containing a melody. This affect could be
+referred to as ``post-correction''. This is in contrast to the main algorithm
+being developed that intends to correct in a ``Real Time'' context.
+
+A similar idea is to allow the user to shift by a constant factor. This could
+allow the performer to sing at a different vocal range than would naturally be
+possible. Multiple streams of these pitch shifts can be created and combined to
+create a harmonization effect. These effects could be applied in real time
+alongside the pitch correction algorithm or during a ''post-correction'' stage.
