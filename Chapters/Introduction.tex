@@ -158,11 +158,60 @@ harmonies''\cite{SmulePatent}.
 
 \section{Approach Taken}
 
-\color{red}
-To Do:
-\begin{itemize}
-	\item Discuss structure of report
-	\item Show final implementation
-	\item Summarise results and conclusion section
-\end{itemize}
-\color{black}
+The report follows the follow ng structure, starting with the literature review
+chapter. The literature review starts with investigates music theory, defining the
+concepts required for pitch correction and fundamentally answering the question of
+what is considered correct. This is done by using the concept of a tuning system
+to create a list of correct frequencies. Next, the pitch correction structure as a
+whole is investigated and an idea of the required modules are formed. The
+important modules are then investigate further, finalizing the literature review.
+
+
+Thereafter, the implementation chapter discusses how the project was put together.
+Assessment metrics are rigorously defined that can measure the success or failure
+of a given pitch correcting system. These metrics aim to measure the pitch
+accuracy improvement the system provides and the distortion caused by the system.
+Thereafter a modular design is proposed for the pitch corrector, shown in figure
+\ref{fig:PitchCorrectorFlowDiagramInto}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{PitchCorrectorFlowDiagram}
+\caption{Flow Diagram of Pitch Corrector}
+\label{fig:PitchCorrectorFlowDiagramInto}
+\end{figure}
+
+Two implementations for the frequency detection modules are created and described.
+One based on the zero-crossing method and the other based on the autocorrelation
+approach. They were tested for noise robustness in the results chapter. The
+zero-crossing method required a signal to noise ratio of 4.5db while the
+autocorrelation method required a signal to noise ratio of 17.8db.
+
+Two implementations for the frequency scaler were created and described. A simple
+overlap and add method and a phase vocoder approach was implemented. Basic tests
+were run to compare the two approaches and roughly determine their pitch
+resolution. It was found that the phase vocoder approach had sufficient pitch
+resolution, acceptable for pitch correction, while the simple overlap and add
+approach did not.
+
+The results chapter contains the results of the evaluation metrics defined in the
+implantation chapter. These rigorous metrics were only run on one combination of
+sub-modules, the zero-crossing method approach as the frequency detector and the
+phase vocoder as the frequency scaler. The metrics found that this combination
+produced a pitch accuracy improvement factor of 4.38 and a similarity of 44\% to
+the original signal. A demo contour diagram is shown of how this system performs
+with a real vocal recording. Figure \ref{fig:DemoIntro} shows the pitch contours
+of the demo.
+
+\begin{figure}[h]
+	\center
+	\includegraphics[width=\textwidth,trim={3.2cm 2cm 3cm 3cm},clip]
+	{LiveDemo}
+	\caption{Vocal recording demonstration of pitch correction}
+	\label{fig:DemoIntro}
+\end{figure}
+
+The report concludes to say that the system, as it stand currently, is not capable
+of non-cherry picked data and further investigation and development is required.
+Recommendations are given on what such an investigation needs to consider and
+investigate first.
