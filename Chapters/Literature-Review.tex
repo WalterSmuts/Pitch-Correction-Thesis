@@ -11,8 +11,8 @@ modules and each module is investigated further.
 
 \section{Music Theory}
 
-The intent of this section is to come up with a definition of what will be a
-considered correct pitch. Some foundational work is required to define basic
+The intent of this section is to come up with a definition of what will be
+considered a correct pitch. Some foundational work is required to define basic
 musical concepts in a rigorous way. To start we need to define exactly what is
 meant by a musical note.
 
@@ -296,7 +296,7 @@ time.
 
 \subsection{Zero Crossing Method}
 
-The zero-crossing method is a time domain method which uses the zero-crossings to
+The zero-crossing method is a time domain method which uses zero-crossings to
 determine the period, and hence, the fundamental frequency of the signal. There
 are two zero crossings in a single period, therefore this detector can produce
 results at a rate of twice the lowest frequency of the signal. Frequency is
@@ -311,12 +311,12 @@ done to accentuate some features. Linear predictive coding is a common
 preprocessing step used when a zero-crossing detector is used\cite{PDABook}.
 Figure \ref{fig:ZeroCrossing} shows a simple graph of how the zero-crossing
 detector works. It calculates the time elapsed between two consecutive zero
-crossings and uses \ref{eq:PeriodVsFreq} to calculate the fundamental frequency.
+crossings and uses equation \ref{eq:PeriodVsFreq} to calculate the fundamental frequency.
 
 \begin{figure}[h]
-	\label{fig:ZeroCrossing}
 	\includegraphics[width=\textwidth]{ZeroCrossingSimple}
 	\caption{Zero crossing detector on 440 Hz sinusoidal signal}
+	\label{fig:ZeroCrossing}
 \end{figure}
 
 Some obvious implementation details and issues can be conceived but was not found
@@ -393,7 +393,7 @@ scaling. This is due to one of the logarithmic identities and is shown in equati
 
 The general approach taken when doing frequency scaling is to expand or shorten
 the signal without affecting the pitch and thereafter re-sampling this expanded or
-shortened version to be the same length as the original. This exansion or
+shortened version of the signal, to be the same length as the original. This expansion or
 shortening of the signal is called time scale modification(TSM). Like frequency
 detection, frequency scaling algorithms can also be divided into time and
 frequency domain approaches. Both, however, tend to be implemented using a
@@ -423,7 +423,7 @@ by Jonathan Driedger
 
 The most simple approach to time scale modification, is to simply have the
 synthesis frames identical to the analysis frames\cite{TSMBook}. This approach
-comes with a couple of problems but forms a basis to point out the problems that
+comes with a couple of unwanted effects but forms a basis to point out the problems that
 other approaches tries to fix. It points out some subtleties in implementation
 that is not immediately evident in figure \ref{fig:FrameBasedApproach}.
 
@@ -449,18 +449,12 @@ time scale modification which increases the duration of the signal by a factor o
 1.8.  The output signals duration is increased but shows little resemblance to the
 initial signal.
 
-\begin{wrapfigure}{L}{0.6\textwidth}
-	\includegraphics[width=0.6\textwidth]{OLAStructureArtifact}
+\begin{wrapfigure}{L}{0.67\textwidth}
+	\center
+	\includegraphics[width=0.60\textwidth]{OLAStructureArtifact}
 	\caption{OLA harmonic structure distortion\cite{TSMBook}}
 	\label{fig:OLAStructureAritfact}
 \end{wrapfigure}
-
-The problems with this approach is that it does not preserve periodic structures.
-This is because it does no work to align the two waveforms when the are fading
-into one another. Figure \ref{fig:OLAStructureAritfact} shows this visually for a
-time scale modification which increases the duration of the signal by a factor of
-1.8.  The output signals duration is increased but shows little resemblance to the
-initial signal.
 
 This approach is considered unsuitable for signals with harmonic content but works
 surprisingly well with percussive signals\cite{TSMBook}. The reason for
