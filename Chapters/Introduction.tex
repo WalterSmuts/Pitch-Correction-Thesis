@@ -64,14 +64,14 @@ A vocalist records some tracks at a recording studio. The whole song is perfect
 except for one out of tune note. This is only realised a few days later in the
 mixing phase of producing the song. Going back to the recording studio would be
 inconvenient and expensive. Having a tool to simply fix the intonation of this
-note without the need to involve the vocalist or recording studio would be
+note, without the need to involve the vocalist or recording studio, would be
 strongly desired.
 \item
-A poor mumble rapper, call him Lil Pump, needs to deliver an important message, in
-the form of his latest song, to his followers in a live performance. Unfortunately
-he's not very talented and cannot sing in tune. A live pitch correction system,
-that would make his voice sound tolerable, would help him deliver this important
-message.
+A poor mumble rapper, call him Lil Pump, needs to deliver an important message.
+This message comes in the form of his latest song, sung to his followers in a live
+performance. Unfortunately he's not very talented and cannot sing in tune. A live
+pitch correction system, that would make his voice sound tolerable, would help him
+deliver his important message.
 \item
 A computer gaming company wants to create a game with an evil artificial
 intelligence antagonist. This character needs to have an eerily ``perfect'' voice.
@@ -88,9 +88,9 @@ from the animated music group ``Alvin and the Chipmunks''. The goal was to raise
 the pitch of the voice of a singer to sound an octave higher than his actual
 voice. This was accomplished by recording the song at half the wanted tempo and
 playing back the recording at twice the speed when mixing. The technology used in
-audio recordings was still analog tape recordings and the whole process was done
+audio recordings was still analog tape, and the whole process was done
 using these tapes. The effect of speeding up a recording to achieve a pitch shift
-became known as the ``Chipmunk Effect''. The approach earned the group two Grammy
+became known as the ``Chipmunk Effect''. This approach earned the group two Grammy
 awards\footnote{\url{https://www.grammy.com/grammys/artists/ross-bagdasarian-sr}}
 in 1958.
 
@@ -98,8 +98,8 @@ In 1977 Eventide introduced a new product, the Eventide H949
 Harmonizer\footnote{\url{https://www.eventideaudio.com/products/clockworks-legacy/harmonizer/h949-harmonizer}},
 capable of incremental pitch shifting. This was sold as a ``de-glitch pitch
 shifter'' and was intended to be used to fix intonation errors and add
-harmonization effects after recording. Other features commonly used was to stretch
-the time of radio recordings of advertisements to be an exact duration without
+harmonization effects after recording. Other features it was commonly used for was to stretch
+the duration of radio advertisements recordings, to be an exact duration, without
 affecting the pitch.  The pitch shifting was implemented using single side-band
 modulation techniques and was done digitally.
 
@@ -111,8 +111,8 @@ modulation techniques and was done digitally.
 	\label{fig:EventideH949}
 \end{figure}
 
-In 1996 Andy Hildebrand, an electrical engineer, was investigating seismic data
-when he realised that the same techniques he was using to investigate the data
+In 1996 Andy Hildebrand, an electrical engineer, was investigating seismic data,
+when he realised that the same techniques he was using to investigate the data,
 could be used to alter the pitch of audio files. His techniques for detecting
 pitch, using a simplification of the autocorrelation function, was considered
 superior to the state of the art at that
@@ -136,7 +136,7 @@ product capable of automatic real time pitch correction\cite{AutoTunePatent}.
 AutoTune comes in a rack mounted unit for live performances shown in figure
 \ref{fig:AutoTuneRack} or as a VST plugin. The software has evolved to allow for
 many more features than the original pitch correction effect that the name
-suggests. Modern AutoTune is still considered the state of the art product by
+suggests. Modern AutoTune is still considered a state of the art product by
 audio engineers.
 
 In 2009 Tom Baran, an electrical engineer, wrote an open source pitch corrector.
@@ -187,15 +187,15 @@ approach. They were tested for noise robustness in the results chapter. The
 zero-crossing method required a signal to noise ratio of 4.5db while the
 autocorrelation method required a signal to noise ratio of 17.8db.
 
-Two implementations for the frequency scaler were created and described. A simple
-overlap and add method and a phase vocoder approach was implemented. Basic tests
+Next, two implementations for the frequency scaler were created and described. A simple
+overlap and add method; and a phase vocoder approach was implemented. Basic tests
 were run to compare the two approaches and roughly determine their pitch
 resolution. It was found that the phase vocoder approach had sufficient pitch
 resolution, acceptable for pitch correction, while the simple overlap and add
 approach did not.
 
 The results chapter contains the results of the evaluation metrics defined in the
-implantation chapter. These rigorous metrics were only run on one combination of
+implementation chapter. These rigorous metrics were only run on one combination of
 sub-modules, the zero-crossing method approach as the frequency detector and the
 phase vocoder as the frequency scaler. The metrics found that this combination
 produced a pitch accuracy improvement factor of 4.38 and a similarity of 44\% to
@@ -214,4 +214,4 @@ of the demo.
 The report concludes to say that the system, as it stand currently, is not capable
 of non-cherry picked data and further investigation and development is required.
 Recommendations are given on what such an investigation needs to consider and
-investigate first.
+what to investigate first.
