@@ -63,7 +63,7 @@ defined in the implementation chapter.
 \begin{figure}[h]
 	\includegraphics[width=\textwidth,trim={2.7cm 0mm 2.7cm 0mm},clip]
 	{EffectivenessPVZCM}
-	\caption{Autocorrelation Method Noise Robustness}
+	\caption{Visual Depiction of Effectiveness metric using Phase Vocoder and ZCM}
 	\label{fig:EffectivenessPVZCM}
 \end{figure}
 
@@ -72,9 +72,31 @@ mean squared pitch error before the correction was $0.59 \times 10^{-3}$, and
 after the correction, $0.13 \times 10^{-3}$. This results in a pitch accuracy
 improvement factor of 4.38.
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Include distortion metric
-\end{itemize}
-\color{black}
+Now that it is known by how much the system improves the pitch accuracy of the
+signal, an indication of how much the signal is getting distorted by the system
+needs to be acquired. This is given by the distortion metric defined in the
+implementation chapter. To give some visual indication of what the distortion
+metric is measuring, a logarithmically scaled spectrogram of the signal is shown
+in figure \ref{fig:DistortionPVZCM}.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth,trim={6cm 0.8cm 6cm 2.1cm},clip]
+	{DistortionPVZCM}
+	\caption{Visual Depiction of Distortion metric using Phase Vocoder and ZCM}
+	\label{fig:DistortionPVZCM}
+\end{figure}
+
+This spectrogram shows the original signal on the left, followed by the result of
+a single application and double application of the pitch correction effect. The
+pitch correction system sees to introduce high frequency content on transitions
+between notes. The second application of the effect, however, seems to slightly
+remove the high frequency content on the transitions. This could be seen as a
+positive effect and should be kept in mind when considering the distortion metric.
+
+The result of the distortion metric is a quote of a ``percentage similar''. The
+goal of a pitch corrector would be to maximise this similarity percentage. The
+result of the distortion metric is 44\% similarity. Another, perhaps even more
+meaningful, assessment of similarity may be to normalize the maximum value of the
+autocorrelation between the first and second application of the correction effect,
+not with the maximum value of the autocorrelation of the middle signal, but rather
+the third. The result of this similarity quote is 61\%.
