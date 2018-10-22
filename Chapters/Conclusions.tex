@@ -2,27 +2,89 @@
 
 \section{Findings}
 
-\color{red}
-To do:
-\begin{itemize}
-	\item Summarise the thesis
-	\item Does it work or not
-\end{itemize}
-\color{black}
+The objective of this thesis was to design and test a pitch correction system.
+Metrics were designed to be a proxy measurement for aesthetic improvement of the
+recordings. These metrics tried to capture the improvement in pitch accuracy and
+the distortion caused by the effect. A frequency detector metric was designed to
+measure the robustness the frequency detection module has towards additive white
+noise.
+
+Two frequency detection modules were implemented. One implementation was based on
+using the zero-crossing method and the other was based on an autocorrelation
+algorithm. The zero-crossing method displayed more noise robustness than the
+autocorrelation method. The zero-crossing method required a signal to noise ration
+of 4.5db while the autocorrelation method required a ratio of 17.8db.
+
+Two frequency scaling modules were implemented. One using a very basic overlap and
+add approach, and another using a sophisticated phase vocoder approach. From tests
+in the implementation chapter, it was obvious that the overlap and add method was
+not an appropriate method to use for pitch correction. The overlap and add method
+produced a pitch shifting resolution of greater than 3 semitones while the phase
+vocoder approach showed pitch shifting resolution greater that the test could
+measure.
+
+Due to time constraints, the metrics developed were only tested on one combination
+of sub-modules. This combination is that of the zero-crossing method as a
+frequency detection module and the phase vocoder as the frequency scaling module.
+This combination produced a pitch improvement factor of 4.38 and a similarity
+percentage of 44\% to the uncorrected recording. Real vocal recordings were also
+tested, proving the system can work with real data. Some manipulation and
+re-recording was required to produce satisfactory results.
+
+Due to the facts presented above, the pitch correction system is not yet
+considered robust to real audio recordings. It works in laboratory conditions and
+requires cherry picked data to perform well. This report is considered a stepping
+stone towards a system that can perform well in a real world scenario. Further
+investigation is required to produce a system that has the desired effect.
+Recommendations are made to inform such an investigation.
 
 \section{Recommendations}
 
-\color{red}
-To do:
+
+
 \begin{itemize}
-	\item Explain how I fucked up and what more can be done to make it better
-	\item Implement synchronised overlap and add algorithm
-	\item Interpolate auto corr function for more resolution
-	\item Do everything relative to a time function (easier plotting and
-		debugging
-	\item Do everything frame-wise
-	\item Investigate remapping function of phase vocoder
-	\item Some parameters, such as pitch acceptableness error, was taken at an
-	arbitrary reasonable value. These values need to be determined physiologically.
+
+\item
+The design of the system as a whole needs to be relative to a time base.
+This means sending a time-base array, t, along with any calculation done on a
+segment This will make some implementation details easy and elegant. Debugging
+will also be much easier.
+
+\item
+A frame based approach needs to be taken more seriously. Currently the
+system calculates the contours separately and passes information about the signal
+as a whole between functions. This was easier to implement but caused much larger
+hassle later on. Functions passing single frames will work much easier.
+
+\item
+The state of the art for small pitch shifting is considered the synchronised
+overlap and add algorithm. The next frequency scaling algorithm to implement
+should be the synchronised overlap and add approach.
+
+\item
+The autocorrelation frequency detector should outperform the zero-crossing
+method. The reason it does not is most probably due to interpolation being
+required to provide enough resolution to function properly.
+
+\item
+The autocorrelation frequency detector needs to be tuned scientifically. The
+threshold values are currently picked from intuition but tests to calculate their
+optimal value is considered to have a chance of significantly improving
+performance.
+
+\item
+The inelegant mapping algorithm used by the phase vocoder, mapping an
+arbitrary frequency scaling contour to sample points for the STFT array and spline
+interpolation function requires some investigation. An email was sent to Professor
+Dan Ellis, the creator of the phase vocoder implementation being used, to get some
+ideas. He responded(too late) with a link to a GitHub
+repository\footnotemark\space that has a correct implementation of the time
+stretching counterpart of the mapping function.
+
+\footnotetext{\url{https://github.com/dpwe/pitchfilter/blob/master/resample_map.m}}
+
+\item
+Some parameters, such as pitch acceptableness error, was taken at an
+arbitrary value. These values need to be determined psychologically.
+
 \end{itemize}
-\color{black}
