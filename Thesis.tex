@@ -6,7 +6,7 @@
 
 \usepackage{color}
 % REMEMBER TO ADD OFFSET FOR BINDING!!!!
-\usepackage[a4paper,width=170mm,top=25mm,bottom=25mm,bindingoffset=0mm]{geometry}
+\usepackage[a4paper,width=170mm,top=25mm,bottom=25mm,bindingoffset=0.4cm]{geometry}
 \usepackage{fancyhdr}
 \usepackage[protrusion=true,expansion=true]{microtype}
 \usepackage{titling}
@@ -239,6 +239,10 @@
 \makeatletter
 \let\TITLE\@title
 \makeatother
+
+\null
+\thispagestyle{empty}
+\newpage
 
 % First page
 \begin{titlepage}
