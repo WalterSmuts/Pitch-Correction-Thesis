@@ -1,4 +1,4 @@
-\documentclass[a1paper,portrait,fontscale=0.42]{baposter}
+\documentclass[a1paper,portrait,fontscale=0.43]{baposter}
 
 \usepackage{relsize}
 \usepackage{url}
@@ -18,6 +18,16 @@
 }
 \renewcommand\refname{}
 
+\let\oldthebibliography\thebibliography
+\let\endoldthebibliography\endthebibliography
+\renewenvironment{thebibliography}[1]{
+  \begin{oldthebibliography}{#1}
+    \setlength{\itemsep}{1mm}
+    \setlength{\parskip}{0em}
+}
+{
+  \end{oldthebibliography}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% START %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -134,7 +144,7 @@ time scale modification is shown below.
 \vspace{2mm}
 \setlength{\fboxsep}{0mm}
 \fbox{\hspace{-1mm}
-\includegraphics[width=0.99\textwidth]{FrameBasedTSM}
+\includegraphics[width=0.99\textwidth,clip,trim={3cm 0mm 3cm 0mm}]{FrameBasedTSM}
 \hspace{-2.2mm}
 }
 
