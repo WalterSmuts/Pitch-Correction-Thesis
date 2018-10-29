@@ -1,4 +1,4 @@
-\documentclass[a1paper,portrait,fontscale=0.4]{baposter}
+\documentclass[a1paper,portrait,fontscale=0.42]{baposter}
 
 \usepackage{relsize}
 \usepackage{url}
@@ -120,11 +120,27 @@ F_0 = \frac{1}{p} = \frac{1}{2\Delta s}
 }
 
 \headerbox{Pitch Shifting}{name=Shifting,column=0,below=Detection}{
+
+To achieve pitch shifting, the standard approach is to stretch the time base of
+the signal without without affecting the pitch and doing the inverse re-sampling
+of this stretching to have to original length. The general frame base approach to
+time scale modification is shown below.
+
+\setlength{\fboxsep}{0mm}
+\fbox{\hspace{-1mm}
+\includegraphics[width=0.99\textwidth]{FrameBasedTSM}
+\hspace{-2.2mm}
+}
+
+The tricky bit is constructing the synthesis frames. The phase
+vocoder\cite{OriginalPhaseVocoder} provides an algorithm to compute these
+synthesis frames.
+
 }
 
 \headerbox{References}{name=References,column=0,below=Shifting,above=bottom}{
 \vspace{-3mm}
-\footnotesize
+\scriptsize
 \bibliography{references}{}
 \bibliographystyle{ieeetr}
 }
