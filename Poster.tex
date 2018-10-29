@@ -90,10 +90,7 @@
 To stop live view system from breaking I'm citing Hearing\cite{Hearing}.
 }
 
-\headerbox{Structure}{name=Structure,column=0,below=Introduction}{
-}
-
-\headerbox{Pitch Detection}{name=Detection,column=0,below=Structure}{
+\headerbox{Pitch Detection}{name=Detection,column=0,below=Introduction}{
 }
 
 \headerbox{Pitch Shifting}{name=Shifting,column=0,below=Detection}{
@@ -106,10 +103,32 @@ To stop live view system from breaking I'm citing Hearing\cite{Hearing}.
 \bibliographystyle{ieeetr}
 }
 
-\headerbox{Big Explanation One}{name=BigOne,span=2,column=1,row=0}{
+\headerbox{Basic Structure}{name=Structure,span=2,column=1,row=0}{
+
+This flow diagram shows the basic structure of the pitch correction system. Each
+block represents a module and the arrows between the modules represents the data
+flow. This structure is a simplification of the structures found in the
+AutoTalent\cite{Autotalent} website and the Smule patent\cite{SmulePatent}.
+
+\vspace{3mm}
+\centering
+\setlength{\fboxsep}{0mm}
+\fbox{\hspace{-2.5mm}
+\setlength{\fboxsep}{5mm}
+\colorbox{white}{
+\includegraphics[width=0.925\textwidth]{PitchCorrectorFlowDiagram}
+\hspace{-2.2mm}
+}
+\hspace{-2.2mm}
 }
 
-\headerbox{Final Result}{name=FinalResult,span=2,below=BigOne,above=bottom,column=1}{
+}
+
+\headerbox{Pitch Detector Robustness}{name=Robustness,span=2,below=Structure,column=1,row=0}{
+
+}
+
+\headerbox{Final Result}{name=FinalResult,span=2,below=Robustness,above=bottom,column=1}{
 
 Below is a graph of what the final system achieved when it was presented with a
 real vocal recording. It shows the pitch contour plots of a person singing a
