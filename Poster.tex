@@ -97,6 +97,26 @@ shifting.
 }
 
 \headerbox{Pitch Detection}{name=Detection,column=0,below=Introduction}{
+
+A pitch detection algorithm attempts to find the fundamental frequency of a
+signal. Using such an algorithm and finding the pitch for successive segments
+would result in a pitch contour. Two algorithms were investigated. The zero
+crossing method, shown below, and the center clipped autocorrelation
+method\cite{ComparitivePitch}.
+
+\setlength{\fboxsep}{0mm}
+\fbox{\hspace{-1mm}
+\includegraphics[width=0.99\textwidth,clip,trim={1cm 0mm 1cm 0mm}]{ZeroCrossingSquashed}
+\hspace{-2.2mm}
+}
+
+The fundamental frequency can be found using the equation below where
+$\Delta s$ is the time between zero crossings.
+
+\begin{equation}
+F_0 = \frac{1}{p} = \frac{1}{2\Delta s}
+\end{equation}
+
 }
 
 \headerbox{Pitch Shifting}{name=Shifting,column=0,below=Detection}{
@@ -153,7 +173,7 @@ original pitch contour is shown in blue.
 
 \setlength{\fboxsep}{0pt}
 \fbox{\hspace{-1mm}
-\includegraphics[width=\textwidth,clip,trim={3cm 1.5cm 3cm 3cm}]{LiveDemo}
+\includegraphics[width=0.99\textwidth,clip,trim={3cm 1.5cm 3cm 3cm}]{LiveDemo}
 \hspace{-1mm}}
 
 From this graph it can be seen that the pitch contour after the correction effect
