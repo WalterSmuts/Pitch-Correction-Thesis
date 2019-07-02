@@ -25,7 +25,7 @@ characteristic pair relevant to pitch correction is the pitch and frequency pair
 and needs to be covered in more depth.
 
 \begin{wrapfigure}{L}{0.5\textwidth}
-\includegraphics[width=0.5\textwidth,trim={1mm 0mm 20mm 8mm},clip]{Frequency-Vs-Pitch}
+\includegraphics[width=0.5\textwidth,trim={1mm 0mm 20mm 8mm},clip]{Frequency-vs-Pitch}
 \caption{"Frequency vs Pitch"}
 \label{fig:FrequencyVsPitch}
 \end{wrapfigure}
@@ -336,15 +336,15 @@ The original algorithm for pitch extraction using autocorrelation was first
 described in a paper written in 1967\cite{OriginalAutocorrelation}. A flow
 diagram of the method described in the original paper was produced by a paper
 comparing different pitch detection algorithms\cite{ComparitivePitch}. This flow
-diagram is shown in figure \ref{fig:AutocorrelationFlowDiagram}. The algorithm in
+diagram is shown in figure \ref{fig:AutoCorrelationFlowDiagram}. The algorithm in
 the flow diagram differs slightly to the algorithm suggested by the original
 paper. The original algorithm does not have an infinite peak clipper and
 calculates the clipping threshold differently.
 
 \begin{figure}[h]
-	\includegraphics[width=\textwidth]{AutocorrelationFlowDiagram}
+	\includegraphics[width=\textwidth]{AutoCorrelationFlowDiagram}
 	\caption{Autocorrelation Algorithm Flow diagram\cite{ComparitivePitch}}
-	\label{fig:AutocorrelationFlowDiagram}
+	\label{fig:AutoCorrelationFlowDiagram}
 \end{figure}
 
 \begin{wrapfigure}{L}{0.35\textwidth}
@@ -489,20 +489,20 @@ The first interpretation is how the original paper first envisioned it. This is 
 a filter bank, each band-passed at different frequencies. Each of these sections
 represent a frequency range. The standard vocoder would only send over the
 information of each band-pass filters's output amplitude. The phase vocoder,
-however, sends the phase information too. Figure \ref{fig:PVFLowDiagram} shows how
+however, sends the phase information too. Figure \ref{fig:PVFlowDiagram} shows how
 this information is extracted coming from a BPF. This allows the receiver to
 calculate the actual frequency in that bandpass filter (not just assuming the
 frequency to be the middle of the BPF) and reproduce a much more accurate signal
 with these two pieces of information.
 
 \begin{figure}[h]
-	\includegraphics[width=\textwidth]{PVFLowDiagram}
+	\includegraphics[width=\textwidth]{PVFlowDiagram}
 	\caption{Flow Diagram showing Frequency and Phase Extraction from
 	BPF\cite{OriginalPhaseVocoder}}
-	\label{fig:PVFLowDiagram}
+	\label{fig:PVFlowDiagram}
 \end{figure}
 
-Interesting blocks in figure \ref{fig:AutocorrelationFlowDiagram} are the unwrap
+Interesting blocks in figure \ref{fig:AutoCorrelationFlowDiagram} are the unwrap
 phase block and the subtract successive values block. These blocks are essentially
 calculating the offset for the middle frequency of the BPF. The ''phase unwrap''
 block just ensures the phase is within the 0 to $2\pi$ domain and the ``subtract
